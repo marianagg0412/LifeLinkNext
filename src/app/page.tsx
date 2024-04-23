@@ -1,22 +1,19 @@
-// Correctly import useRouter from 'next/navigation'
-import { useRouter } from 'next/navigation';
-
+import Link from 'next/link';
+import './styles.css';
 export default function HomePage() {
-    const router = useRouter();
-
-    const handleLogin = () => {
-        router.push('/login');
-    };
-
-    const handleRegister = () => {
-        router.push('/register');
-    };
-
     return (
-        <div style={{ textAlign: 'center', marginTop: '50px' }}>
-            <h1>Welcome to Our Application</h1>
-            <button onClick={handleLogin} style={{ margin: '20px', padding: '10px 20px' }}>Login</button>
-            <button onClick={handleRegister} style={{ margin: '20px', padding: '10px 20px' }}>Register</button>
+        <div className='container'>
+            <div className='card'>
+                <div className='headers'>
+                    <h1>Bienvenido a LifeLink</h1>
+                    <Link href="/login">
+                        <button type="button">Login</button>
+                    </Link>
+                    <Link href="/register">
+                        <button type="button">Register</button>
+                    </Link>
+                </div>
+            </div>
         </div>
     );
 }

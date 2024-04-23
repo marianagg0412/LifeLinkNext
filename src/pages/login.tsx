@@ -1,44 +1,64 @@
-import { Formik, Field, Form, FormikHelpers } from 'formik';
-import styles from '../components/login-form.module.css';
+import { useState} from 'react';
+import '/Users/mariana/Desktop/LifeLinkNext/src/styles/LoginForm.css';
+import { useRouter } from 'next/router';
+import axios from 'axios';
 
-interface Values {
-    username: string;
-    password: string;
+const Login = () => {
+  const router = useRouter();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleLogin = async (email: string, password: string) => {
+    try {
+      const response = await axios.post('localhost:3000/auth/login', {
+        email,
+        password
+      },
+      {
+        withCredentials: true
+      });
+  
+      const data = response.data;
+      console.log(data);
+      console.log(response);
+  
+      router.push('src/pages/dashboard.tsx');
+    } catch (error) {
+      console.error('Login error:', error);
+      // Handle API call errors (e.g., network issues)
+    }
+  };
+
+  return (
+    <div className='container'>
+        <div className='card'>
+            <h1 className='headers'> Inicio de sesión</h1>
+            <form onSubmit={(event) => { event.preventDefault(); handleLogin(email, password); }}>
+            <label htmlFor="email">Email</label>
+            <input
+                type="email"
+                name="email"
+                value={email}
+                placeholder='hey@tuemail.com'
+                onChange={(event) => setEmail(event.target.value)}
+            />
+
+            <label htmlFor="password">Contraseña</label>
+            <input
+                type="password"
+                name="password"
+                value={password}
+                placeholder='Introduce tu contraseña'
+                onChange={(event) => setPassword(event.target.value)}
+            />
+          
+            <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+  )
 }
 
-export default function LoginForm() {
-    return (
-      <div className={styles.login_box + ' p-3'}>
-        <h1 className="display-6 mb-3">Login</h1>
-        <Formik
-          initialValues={{
-            username: '',
-            password: '',
-          }}
-
-          onSubmit={(
-            values: Values,
-            { setSubmitting }: FormikHelpers<Values>
-          ) => {
-            setTimeout(() => {
-              alert(JSON.stringify(values, null, 2));
-              setSubmitting(false);
-            }, 500);
-          }}
-
-        >
-          <Form>
-            <div className="mb-3">
-              <Field className="form-control" id="username" name="username" placeholder="Username" aria-describedby="usernameHelp" />
-            </div>
-  
-            <div className="mb-3">
-              <Field className="form-control" id="password" name="password" placeholder="Password" type="password" />
-            </div>
-
-            <button type="submit" className="btn btn-primary">Login</button>
-          </Form>
-        </Formik>
-      </div>
-    );
-  };
+export default Login
