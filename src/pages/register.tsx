@@ -1,7 +1,31 @@
 import { useState} from 'react';
-import '/Users/mariana/Desktop/LifeLinkNext/src/styles/LoginForm.css';
-import { useRouter } from 'next/router';
-import axios from 'axios';
+import '../styles/LoginForm.css';
+import { NextRouter, useRouter} from 'next/router';
+import axios, {AxiosError} from 'axios';
+
+const handleRegistration = async (userData: {
+    email: string;
+    password: string;
+    name: string;
+    lastname: string;
+    docnum: string;
+    phone: string;
+    bloodType: string;
+}, router: NextRouter) => {
+    try {
+        const response = await axios.post('http://localhost:3000/auth/register', userData);
+        alert("El usuario se creó exitosamente");
+        router.push('/dashboard')
+    }catch (error) {
+        if(error instanceof AxiosError) {
+            if (error.response && error.response.status === 409) {
+                alert('El correo electrónico está en uso');  // "Email already exists."
+            } else {
+                alert(error.message || "An unexpected error occurred.");
+            }
+        }
+    }
+}
 
 const Register = () => {
   const router = useRouter();
@@ -11,71 +35,89 @@ const Register = () => {
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  const handleRegistration = async (name: string, lastname: string, docnum: string, phone: string, email: string, password: string) => {
-
-  };
+  const [bloodType, setBloodType] = useState('');
 
   return (
     <div className='container'>
         <div className='card'>
             <h1 className='headers'> Registro de usuario</h1>
-            <form onSubmit={(event) => { event.preventDefault(); handleRegistration(name, lastname, docnum, phone, email, password)}}>
-            <label htmlFor="name">Nombre</label>
+            <form onSubmit={(event) => {
+                event.preventDefault();
+                const userData = {
+                    email,
+                    password,
+                    name,
+                    lastname,
+                    docnum,
+                    phone,
+                    bloodType
+                }
+                handleRegistration(userData, router);
+            }}>
+                <label htmlFor="name">Nombre</label>
+                <input
+                    type="text"
+                    name="name"
+                    value={name}
+                    placeholder='Ingrese su nombre'
+                    onChange={(event) => setName(event.target.value)}
+                />
+
+                <label htmlFor="lastname">Apellido</label>
+                <input
+                    type="text"
+                    name="lastname"
+                    value={lastname}
+                    placeholder='Ingrese su apellido'
+                    onChange={(event) => setLastname(event.target.value)}
+                />
+
+                <label htmlFor="docnum">Numero de documento</label>
+                <input
+                    type="text"
+                    name="docnum"
+                    value={docnum}
+                    placeholder='Ingrese su número de documento'
+                    onChange={(event) => setDocnum(event.target.value)}
+                />
+
+                <label htmlFor="phone">Teléfono</label>
+                <input
+                    type="text"
+                    name="phone"
+                    value={phone}
+                    placeholder='Ingrese phone'
+                    onChange={(event) => setPhone(event.target.value)}
+                />
+
+            <label htmlFor="bloodType">Tipo de sangre</label>
             <input
-                type="name"
-                name="name"
-                value={name}
-                placeholder='Ingrese su nombre'
-                onChange={(event) => setName(event.target.value)}
+                type="text"
+                name="bloodType"
+                value={bloodType}
+                placeholder='Ingrese su tipo de sangre'
+                onChange={(event) => setBloodType(event.target.value)}
             />
 
-            <label htmlFor="lastname">Apellido</label>
-            <input
-                type="lastname"
-                name="lastname"
-                value={lastname}
-                placeholder='Ingrese su apellido'
-                onChange={(event) => setLastname(event.target.value)}
-            />
+                <label htmlFor="email">Email</label>
+                <input
+                    type="email"
+                    name="email"
+                    value={email}
+                    placeholder='hey@mail.com'
+                    onChange={(event) => setEmail(event.target.value)}
+                />
 
-            <label htmlFor="docnum">Numero de documento</label>
-            <input
-                type="docnum"
-                name="docnum"
-                value={docnum}
-                placeholder='Ingrese docNum'
-                onChange={(event) => setDocnum(event.target.value)}
-            />
+                <label htmlFor="password">Contraseña</label>
+                <input
+                    type="password"
+                    name="password"
+                    value={password}
+                    placeholder='Introduce tu contraseña'
+                    onChange={(event) => setPassword(event.target.value)}
+                />
 
-            <label htmlFor="phone">Telefono</label>
-            <input
-                type="phone"
-                name="phone"
-                value={phone}
-                placeholder='Ingrese phone'
-                onChange={(event) => setPhone(event.target.value)}
-            />
-
-            <label htmlFor="email">Email</label>
-            <input
-                type="email"
-                name="email"
-                value={email}
-                placeholder='hey@mail.com'
-                onChange={(event) => setEmail(event.target.value)}
-            />
-
-            <label htmlFor="password">Contraseña</label>
-            <input
-                type="password"
-                name="password"
-                value={password}
-                placeholder='Introduce tu contraseña'
-                onChange={(event) => setPassword(event.target.value)}
-            />
-          
-            <button type="submit">Login</button>
+                <button type="submit">Regístrate</button>
             </form>
         </div>
     </div>
