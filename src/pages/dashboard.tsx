@@ -5,7 +5,7 @@ const Dashboard = () => {
     const router = useRouter();
     return(
         <div>
-            <h1> Ha ingresado correctamente</h1>
+            <h1> Ha ingresado correctamente a su panel de control</h1>
             <div style={{position: 'absolute', top: 30, right:10}}>
                 <button type="button" onClick={() => router.push('/')}>
                     Cerrar sesión

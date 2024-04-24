@@ -1,6 +1,6 @@
-import { useState} from 'react';
+import { useState, useEffect } from 'react';
 import '../styles/LoginForm.css';
-import { NextRouter, useRouter} from 'next/router';
+import { NextRouter, useRouter } from 'next/router';
 import axios from 'axios';
 
 const handleLogin = async (userData: { email: string; password: string; }, router: NextRouter) => {
@@ -16,12 +16,26 @@ const handleLogin = async (userData: { email: string; password: string; }, route
 };
 
 const Login = () => {
-  const router = useRouter();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false)
+ const router = useRouter();
+ const [email, setEmail] = useState('');
+ const [password, setPassword] = useState('');
+ const [showPassword, setShowPassword] = useState(false);
 
-  return (
+ useEffect(() => {
+    router.beforePopState(({ url, as, options }) => {
+      // Custom logic here, e.g., show a confirmation dialog or redirect
+      console.log('state popped');
+      if (as !== "/" && as !== "/other") {
+        // SSR-render the specified location. (Should 404)
+        window.location.href = as;
+        return false;
+     }
+
+      return true;
+    });
+ }, []);
+
+ return (
     <div className='container'>
         <div className='card'>
             <h1 className='headers'> Inicio de sesión</h1>
@@ -49,11 +63,12 @@ const Login = () => {
                 onChange={(event) => setPassword(event.target.value)}
             />
           
-            <button type="submit">Inicia Sesión</button>
+            <button className='btn1'>Inicia Sesión</button>
             </form>
+            <button className='btn2' onClick={() => router.push('/')}>Retornar a menu</button>
         </div>
     </div>
-  )
+ );
 }
 
-export default Login
+export default Login;

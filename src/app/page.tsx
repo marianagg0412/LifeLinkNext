@@ -7,10 +7,10 @@ export default function HomePage() {
                 <div className='headers'>
                     <h1>Bienvenido a LifeLink</h1>
                     <Link href="/login">
-                        <button type="button">Login</button>
+                        <button className='btn1'>Login</button>
                     </Link>
                     <Link href="/register">
-                        <button type="button">Register</button>
+                        <button className='btn1'>Register</button>
                     </Link>
                 </div>
             </div>

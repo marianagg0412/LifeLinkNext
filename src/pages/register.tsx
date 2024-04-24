@@ -13,19 +13,20 @@ const handleRegistration = async (userData: {
     bloodType: string;
 }, router: NextRouter) => {
     try {
-        const response = await axios.post('http://localhost:3000/auth/register', userData);
-        alert("El usuario se creó exitosamente");
-        router.push('/dashboard')
-    }catch (error) {
-        if(error instanceof AxiosError) {
-            if (error.response && error.response.status === 409) {
-                alert('El correo electrónico está en uso');  // "Email already exists."
-            } else {
-                alert(error.message || "An unexpected error occurred.");
-            }
+        const response = await axios.post(
+          'http://localhost:3000/auth/register',
+          userData
+        );
+        alert('El usuario se creó exitosamente');
+        router.push('/dashboard');
+      } catch (error: any) {
+        if (error.response && error.response.status === 400) {
+          alert('Alguna credencial ingresada ya está en uso');
+        } else {
+          alert('Se produjo un error inesperado al registrar el usuario');
         }
-    }
-}
+      }
+    };
 
 const Register = () => {
   const router = useRouter();
@@ -116,9 +117,9 @@ const Register = () => {
                     placeholder='Introduce tu contraseña'
                     onChange={(event) => setPassword(event.target.value)}
                 />
-
-                <button type="submit">Regístrate</button>
+                <button className='btn1'>Regístrate</button>
             </form>
+            <button className='btn2'onClick={() => router.push('/')}>Retornar a menu</button>
         </div>
     </div>
   )
