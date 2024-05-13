@@ -6,7 +6,7 @@ import axios from 'axios';
 const handleLogin = async (userData: { email: string; password: string; }, router: NextRouter) => {
     try {
         const response = await axios.post('http://localhost:3000/auth/login', userData);
-        localStorage.setItem('token', response.data.access_token);
+        localStorage.setItem('token', response.data.token);
         await router.push('/dashboard');
         alert('Se ha iniciado sesión correctamente');
     } catch (error) {

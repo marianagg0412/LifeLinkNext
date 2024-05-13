@@ -1,73 +1,129 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Make sure container fills viewport */
+}
+
 body{
-    background-color: #FFF3F3;
+  background-color: #FFF3F3;
 }
 form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 2rem;
-  }
-  
-  label {
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-  
-  input[name="email"],
-  input[name="password"],
-  input[name="name"],
-  input[name="lastname"],
-  input[name="docnum"],
-  input[name="phone"],
-  input[name="bloodType"]
-  {
-    padding: 0.5rem;
-    margin-bottom: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    border-color: #CD0309;
-    width: 20rem;
-    font-size: 1rem;
-    box-sizing: border-box;
-  }
-  
-  button[type="submit"],
-  button[type="button"] {
-    padding: 0.5rem 1rem;
-    background-color: #FF5A5A;
-    color: white;
-    border: 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    width: 20rem;
-    font-size: 1rem;
-    margin-top: 1rem;
-  }
-  
-  button[type="submit"], button[type="button"]:hover {
-    background-color: #ebaeae;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+}
 
-  .btn1 {
-    padding: 0.5rem 1rem;
-    background-color: #FF5A5A;
-    color: white;
-    border: 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    width: 20rem;
-    font-size: 1rem;
-    margin-top: 1rem;
-  }
-  
-  .btn1:hover {
-    background-color: #ebaeae;
-  }
+button[type = "button"]{
+  padding: 0.5rem 1rem;
+  color: #ccc;
+  border-color: #FF5A5A;
+  border: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 5rem;
+  font-size: 1rem;
+}
 
-  .btn2 {
+label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+input[name="email"],
+input[name="password"],
+input[name="name"],
+input[name="phone"],
+input[name="lastname"],
+input[name="bloodType"]
+{
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  border-color: #CD0309;
+  width: 20rem;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+input[name="docnum"], .docInput{
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  border-color: #CD0309;
+  width: 15rem;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.card {
+  width: 400px;
+  max-width: 80%; /* Adjust max-width for responsiveness */
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 10px; /* Rounded corners for card effect */
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.headers{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.phoneInput{
+  display: flex;
+  width: 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 4px;
+}
+
+.selecterDocType{
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid white;
+  border-radius: 4px;
+  border-color: #CD0309;
+  width: 4rem;
+  font-size: 1rem;
+  box-sizing: border-box;
+  margin-right: 0.5rem;
+}
+
+.btn1 {
+  padding: 0.5rem 1rem;
+  background-color: #FF5A5A;
+  color: white;
+  border: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 20rem;
+  font-size: 1rem;
+  margin-top: 1rem;
+  
+}
+
+.btn1:hover {
+  background-color: #ebaeae;
+}
+
+.btn2 {
     padding: 0.5rem 1rem;
     background-color: #FF5A5A;
     color: white;
@@ -79,32 +135,35 @@ form {
     font-size: 1rem;
     margin-top: 1rem;
     margin-left: 2.5rem;
-  }
-  
-  .btn2:hover {
-    background-color: #ebaeae;
-  }
+}
 
-  .card {
-    width: 400px;
-    max-width: 80%; /* Adjust max-width for responsiveness */
-    padding: 2rem;
-    background-color: #fff;
-    border-radius: 10px; /* Rounded corners for card effect */
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-  }
-  .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh; /* Make sure container fills viewport */
-  }
+.btn2:hover {
+  background-color: #ebaeae;
+}
 
-  .headers{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-  
-  
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scrollable-card {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 80%;
+  overflow-y: auto;
+  max-height: 90vh; /* Adjust based on your preference */
+}
+
+.card-content {
+  margin-bottom: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

@@ -10,6 +10,10 @@ button[type="button"] {
     width: 10rem;
     font-size: 1rem;
   }
+
+  body{
+    background-color: #FFF3F3;
+  }
   
   button[type="button"]:hover {
     background-color: #ebaeae;
