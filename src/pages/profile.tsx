@@ -51,6 +51,7 @@ const UserProfile = () => {
             } catch (error) {
                 console.error('Error fetching profile data:', error);
                 alert('Error fetching profile data');
+                alert(error);
                 router.push('/login');
             }
         };

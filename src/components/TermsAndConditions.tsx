@@ -15,7 +15,7 @@ const ScrollableCard: FC<ScrollableCardProps> = ({ isOpen, onClose, onAcceptTerm
     <div className="modal-backdrop" onClick={onClose}>
       <div className="scrollable-card" tabIndex={-1}>
         <div className="card-content">
-          <h2>Terms and Conditions</h2>
+          <h2>Términos y Condiciones</h2>
 
           <section>
             <h3>Introducción</h3>

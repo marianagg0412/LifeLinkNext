@@ -35,7 +35,7 @@ const Register = () => {
       setDocnum(docnum); // Assuming docnum is the state holding the current input value
     }
   };
-  const allowedOptions = ["CC", "CE", "Pasaporte"];
+  const allowedOptions = ["CC", "CE", "PA"];
 
   const handleRegistration = async (event: { email: string; password: string; name: string; lastname: string; docnum_type: string; docnum: string; phone: string; bloodType: string; }) => {
     //event.preventDefault(); // Prevent form submission
