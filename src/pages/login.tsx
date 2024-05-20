@@ -1,5 +1,5 @@
+import { tw } from 'twind';
 import { useState, useEffect } from 'react';
-import '../styles/LoginForm.css';
 import { NextRouter, useRouter } from 'next/router';
 import axios from 'axios';
 
@@ -19,7 +19,6 @@ const Login = () => {
  const router = useRouter();
  const [email, setEmail] = useState('');
  const [password, setPassword] = useState('');
- const [showPassword, setShowPassword] = useState(false);
 
  useEffect(() => {
     router.beforePopState(({ url, as, options }) => {
@@ -36,39 +35,42 @@ const Login = () => {
  }, []);
 
  return (
-    <div className='container'>
-        <div className='card'>
-            <h1 className='headers'> Inicio de sesión</h1>
-            <form onSubmit={(event) => { event.preventDefault();
-                const userData = {
-                    email,
-                    password,
-                }
-                handleLogin(userData, router); }}>
-            <label htmlFor="email">Email</label>
-            <input
-                type="email"
-                name="email"
-                value={email}
-                placeholder='hey@tuemail.com'
-                onChange={(event) => setEmail(event.target.value)}
-            />
-
-            <label htmlFor="password">Contraseña</label>
-            <input
-                type="password"
-                name="password"
-                value={password}
-                placeholder='Introduce tu contraseña'
-                onChange={(event) => setPassword(event.target.value)}
-            />
-          
-            <button className='btn1'>Inicia Sesión</button>
-            </form>
-            <button className='btn2' onClick={() => router.push('/')}>Retornar a menu</button>
+  <div className={tw(`min-h-screen flex items-center justify-center bg-gray-100`)}>
+    <div className={tw(`max-w-md w-full bg-white shadow-md rounded-lg p-8`)}>
+      <h1 className={tw(`text-3xl font-bold text-center mb-6`)}>Inicio de sesión</h1>
+      <form onSubmit={(event) => {
+        event.preventDefault();
+        const userData = { email, password };
+        handleLogin(userData, router);
+      }}>
+        <div className={tw(`mb-4`)}>
+          <label htmlFor="email" className={tw(`block text-gray-700 mb-2`)}>Email</label>
+          <input
+            type="email"
+            name="email"
+            value={email}
+            placeholder="hey@tuemail.com"
+            onChange={(event) => setEmail(event.target.value)}
+            className={tw(`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500`)}
+          />
         </div>
+        <div className={tw(`mb-6`)}>
+          <label htmlFor="password" className={tw(`block text-gray-700 mb-2`)}>Contraseña</label>
+          <input
+            type="password"
+            name="password"
+            value={password}
+            placeholder="Introduce tu contraseña"
+            onChange={(event) => setPassword(event.target.value)}
+            className={tw(`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500`)}
+          />
+        </div>
+        <button className={tw(`w-full bg-[#FF5A5A] text-white p-3 rounded-lg font-semibold hover:bg-[#FF3A3A] transition duration-200`)}>Inicia Sesión</button>
+      </form>
+      <button className={tw(`w-full bg-gray-500 text-white p-3 rounded-lg font-semibold mt-4 hover:bg-gray-600 transition duration-200`)} onClick={() => router.push('/dashboard')}>Retornar a la página principal</button>
     </div>
- );
+  </div>
+);
 }
 
 export default Login;

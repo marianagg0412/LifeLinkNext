@@ -1,11 +1,12 @@
 import { useState} from 'react';
-import '../styles/LoginForm.css';
 import { useRouter} from 'next/router';
 import axios from 'axios';
 import { PhoneInput } from 'react-international-phone';
 import 'react-international-phone/style.css';
 import Modal from '@/components/Modal';
 import CustomButton from '@/components/CustomButton';
+import { tw } from 'twind';
+import '../styles/LoginForm.css';
 
 const Register = () => {
   const router = useRouter();
@@ -17,11 +18,16 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [bloodType, setBloodType] = useState('');
   const [docnum_type, setdocnum_type] = useState('');
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [termsAccepted, setTermsAccepted] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+
+  const onAcceptTerms = () => {
+    console.log('Terms accepted');
+    closeModal();
+  };
 
   const handleInputChange = (event: { target: { value: any; }; }) => {
     const value = event.target.value;
@@ -67,124 +73,134 @@ const Register = () => {
     }
   };
 
-  const onAcceptTerms = () => {
-    setTermsAccepted(true);
-  };
-
+  
   return (
-    <div className='container'>
-        <div className='card'>
-            <h1 className='headers'> Registro de usuario</h1>
-            <form onSubmit={(event) => {
-                event.preventDefault();
-                const userData = {
-                    email,
-                    password,
-                    name,
-                    lastname,
-                    docnum_type,
-                    docnum,
-                    phone,
-                    bloodType
-                }
-                handleRegistration(userData);
-            }}>
-                <label htmlFor="name">Nombre</label>
-                <input
-                    type="text"
-                    name="name"
-                    value={name}
-                    placeholder='Ingrese su nombre'
-                    onChange={(event) => setName(event.target.value)}
-                />
-
-                <label htmlFor="lastname">Apellido</label>
-                <input
-                    type="text"
-                    name="lastname"
-                    value={lastname}
-                    placeholder='Ingrese su apellido'
-                    onChange={(event) => setLastname(event.target.value)}
-                />
-
-                <label htmlFor="docnum">Numero de documento</label>
-                <div style={{ display: 'flex', alignItems: 'center' }}> {/* Wrap input and select in a div for alignment */}
-                    <select
-                        name="docType"
-                        value={docnum_type}
-                        onChange={(e) => {
-                            setdocnum_type(e.target.value);
-                            if (!allowedOptions.includes(e.target.value)) {
-                                alert('Por favor, seleccione una opción válida.');
-                            }
-                        }}
-                        style={{ marginLeft: '10px' }} className='selecterDocType' // Style to add space between input and select
-                    >
-                        <option value="">Seleccione el tipo de documento</option>
-                        <option value="CC">CC</option>
-                        <option value="CE">CE</option>
-                        <option value="PA">Pasaporte</option>
-                    </select>
-
-                    {docnum_type === "CC" || docnum_type === "CE"? (
-                                    <input className='docInput'
-                                        type="text"
-                                        name="docnum"
-                                        placeholder='Ingrese su número de documento'
-                                        onChange={handleInputChange}
-                                    />
-                                    ) : (
-                                    <input className='docInput'
-                                        type="text"
-                                        name="docnum"
-                                        placeholder='Ingrese su número de documento'
-                                        onChange={(event) => setDocnum(event.target.value)}
-                                        disabled={docnum_type === ""}
-                                    />
-                                    )}
-                </div>
-                <label htmlFor="phone">Teléfono</label>
-                <PhoneInput className='phoneInput' 
-                defaultCountry="co"
-                value={phone}
-                onChange={(phone) => setPhone(phone)}
-                />
-
-                <label htmlFor="bloodType">Tipo de sangre</label>
-                <input
-                    type="text"
-                    name="bloodType"
-                    value={bloodType}
-                    placeholder='Ingrese su tipo de sangre'
-                    onChange={(event) => setBloodType(event.target.value)}
-                />
-
-                <label htmlFor="email">Email</label>
-                <input
-                    type="email"
-                    name="email"
-                    value={email}
-                    placeholder='hey@mail.com'
-                    onChange={(event) => setEmail(event.target.value)}
-                />
-
-                <label htmlFor="password">Contraseña</label>
-                <input
-                    type="password"
-                    name="password"
-                    value={password}
-                    placeholder='Introduce tu contraseña'
-                    onChange={(event) => setPassword(event.target.value)}
-                />
-                <button className='btn1'>Regístrate</button>
-            </form>
-            <CustomButton className='btn2' onClick={openModal} onAcceptTerms={onAcceptTerms}>Abrir los Términos and Condiciones</CustomButton>
-            <Modal isOpen={isModalOpen} onClose={closeModal} />
-
-            <button className='btn2'onClick={() => router.push('/')}>Retornar a menu</button>
-        </div>
+    <div className={tw(`min-h-screen flex items-center justify-center bg-gray-100`)}>
+      <div className={tw(`max-w-md w-full bg-white shadow-md rounded-lg p-8`)}>
+        <h1 className={tw(`text-3xl font-bold text-center mb-6`)}>Registro de usuario</h1>
+        <form onSubmit={(event) => {
+          event.preventDefault();
+          const userData = {
+            email,
+            password,
+            name,
+            lastname,
+            docnum_type,
+            docnum,
+            phone,
+            bloodType
+          };
+          handleRegistration(userData);
+        }}>
+          <div className={tw(`mb-4`)}>
+            <label htmlFor="name" className={tw(`block text-gray-700 mb-2`)}>Nombre</label>
+            <input
+              type="text"
+              name="name"
+              value={name}
+              placeholder="Ingrese su nombre"
+              onChange={(event) => setName(event.target.value)}
+              className={tw(`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500`)}
+            />
+          </div>
+          <div className={tw(`mb-4`)}>
+            <label htmlFor="lastname" className={tw(`block text-gray-700 mb-2`)}>Apellido</label>
+            <input
+              type="text"
+              name="lastname"
+              value={lastname}
+              placeholder="Ingrese su apellido"
+              onChange={(event) => setLastname(event.target.value)}
+              className={tw(`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500`)}
+            />
+          </div>
+          <div className={tw(`mb-4`)}>
+            <label htmlFor="docnum" className={tw(`block text-gray-700 mb-2`)}>Número de documento</label>
+            <div className={tw(`flex flex-col items-start space-y-2`)}>
+              <select
+                name="docType"
+                value={docnum_type}
+                onChange={(e) => {
+                  setdocnum_type(e.target.value);
+                  if (!allowedOptions.includes(e.target.value)) {
+                    alert('Por favor, seleccione una opción válida.');
+                  }
+                }}
+                className={tw(`p-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500`)}
+              >
+                <option value="">Seleccione el tipo de documento</option>
+                <option value="CC">CC</option>
+                <option value="CE">CE</option>
+                <option value="PA">Pasaporte</option>
+              </select>
+              <input
+                type="text"
+                name="docnum"
+                placeholder="Ingrese su número de documento"
+                onChange={handleInputChange}
+                className={tw(`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500`)}
+                disabled={docnum_type === ""}
+              />
+            </div>
+          </div>
+          <div className={tw(`mb-4`)}>
+            <label htmlFor="phone" className={tw(`block text-gray-700 mb-2`)}>Teléfono</label>
+            <PhoneInput
+              defaultCountry="co"
+              value={phone}
+              onChange={setPhone}
+              className={tw(`w-full p-3 flex justify-center items-center focus:outline-none focus:ring-2 focus:ring-blue-500`)}
+            />
+          </div>
+          <div className={tw(`mb-4`)}>
+            <label htmlFor="bloodType" className={tw(`block text-gray-700 mb-2`)}>Tipo de sangre</label>
+            <input
+              type="text"
+              name="bloodType"
+              value={bloodType}
+              placeholder="Ingrese su tipo de sangre"
+              onChange={(event) => setBloodType(event.target.value)}
+              className={tw(`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500`)}
+            />
+          </div>
+          <div className={tw(`mb-4`)}>
+            <label htmlFor="email" className={tw(`block text-gray-700 mb-2`)}>Email</label>
+            <input
+              type="email"
+              name="email"
+              value={email}
+              placeholder="hey@mail.com"
+              onChange={(event) => setEmail(event.target.value)}
+              className={tw(`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500`)}
+            />
+          </div>
+          <div className={tw(`mb-6`)}>
+            <label htmlFor="password" className={tw(`block text-gray-700 mb-2`)}>Contraseña</label>
+            <input
+              type="password"
+              name="password"
+              value={password}
+              placeholder="Introduce tu contraseña"
+              onChange={(event) => setPassword(event.target.value)}
+              className={tw(`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500`)}
+            />
+          </div>
+          <button className={tw(`w-full bg-[#FF5A5A] text-white p-3 rounded-lg font-semibold hover:bg-[#FF3A3A] transition duration-200`)}>Regístrate</button>
+        </form>
+        <div>
+      <CustomButton
+        className={tw(`w-full bg-gray-500 text-white p-3 rounded-lg font-semibold mt-4 hover:bg-gray-600 transition duration-200`)}
+        onClick={openModal}
+        onAcceptTerms={onAcceptTerms}
+      >
+        Abrir los Términos y Condiciones
+      </CustomButton>
+      <Modal isOpen={isModalOpen} onClose={closeModal} onAcceptTerms={onAcceptTerms} />
     </div>
-  )
+        <button className={tw(`w-full bg-gray-500 text-white p-3 rounded-lg font-semibold mt-4 hover:bg-gray-600 transition duration-200`)} onClick={() => router.push('/main')}>Retornar a menu</button>
+      </div>
+    </div>
+  );
 }
 
 export default Register

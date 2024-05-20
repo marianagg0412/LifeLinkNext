@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import axios from 'axios';
 import { PhoneInput } from 'react-international-phone';
 import 'react-international-phone/style.css';
+import { tw } from 'twind';
 import '../styles/ProfileForm.css';
 
 
@@ -102,53 +103,94 @@ const UserProfile = () => {
     }
 
     return (
-        <div className='container'>
-            <div className='card'>
-                <h1 className='headers'>User Profile</h1>
-                {editMode ? (
-                    <>
-                        <div className="form-group">
-                            <label htmlFor="email">Email</label>
-                            <input type="email" value={updatedEmail} onChange={(e) => setUpdatedEmail(e.target.value)} />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="password">Contraseña</label>
-                            <input type="password" placeholder="New Password" value={updatedPassword} onChange={(e) => setUpdatedPassword(e.target.value)} />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="phone">Teléfono</label>
-                            <PhoneInput
-                                className='phoneInput'
-                                defaultCountry="CO"
-                                value={updatedPhone}
-                                onChange={setUpdatedPhone}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label>
-                                <input type="checkbox" checked={isDonor} onChange={(e) => setIsDonor(e.target.checked)} />
-                                Soy donante de órganos
-                            </label>
-                            <label>
-                                <input type="checkbox" checked={isRecipient} onChange={(e) => setIsRecipient(e.target.checked)} />
-                                Soy receptor de órganos
-                            </label>
-                        </div>
-                        <button className='btn1' onClick={handleUpdate}>Guardar cambios</button>
-                        <button className='btn2' onClick={() => setEditMode(false)}>Cancelar</button>
-                    </>
-                ) : (
-                    <>
-                        <p className='profileData'><strong>Name:</strong> {user.name} {user.lastname}</p>
-                        <p className='profileData'><strong>Email:</strong> {user.email}</p>
-                        <p className='profileData'><strong>Teléfono:</strong> {user.phone}</p>
-                        <button className='btn1' onClick={handleEdit}>Edita tu perfil</button>
-                        <button className='btn2' onClick={() => router.push('/dashboard')}>Regresar a la página principal</button>
-                    </>
-                )}
-            </div>
+        <div className={tw(`min-h-screen flex items-center justify-center bg-gray-100`)}>
+          <div className={tw(`max-w-md w-full bg-white shadow-md rounded-lg p-8`)}>
+            <h1 className={tw(`text-3xl font-bold text-center mb-6`)}>Perfil de Usuario</h1>
+            {editMode ? (
+              <>
+                <div className={tw(`mb-4`)}>
+                  <label htmlFor="email" className={tw(`block text-gray-700 mb-2`)}>Email</label>
+                  <input
+                    type="email"
+                    value={updatedEmail}
+                    onChange={(e) => setUpdatedEmail(e.target.value)}
+                    className={tw(`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500`)}
+                  />
+                </div>
+                <div className={tw(`mb-4`)}>
+                  <label htmlFor="password" className={tw(`block text-gray-700 mb-2`)}>Contraseña</label>
+                  <input
+                    type="password"
+                    placeholder="New Password"
+                    value={updatedPassword}
+                    onChange={(e) => setUpdatedPassword(e.target.value)}
+                    className={tw(`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500`)}
+                  />
+                </div>
+                <div className={tw(`mb-4`)}>
+                    <label htmlFor="phone" className={tw(`block text-gray-700 mb-2`)}>Teléfono</label>
+                        <PhoneInput
+                            className={tw(`w-full p-3 flex justify-center items-center focus:outline-none focus:ring-2 focus:ring-blue-500`)}
+                            defaultCountry="CO"
+                            value={updatedPhone}
+                            onChange={setUpdatedPhone}
+                        />
+                </div>
+                <div className={tw(`mb-4`)}>
+                  <label className={tw(`block text-gray-700 mb-2`)}>
+                    <input
+                      type="checkbox"
+                      checked={isDonor}
+                      onChange={(e) => setIsDonor(e.target.checked)}
+                      className={tw(`mr-2`)}
+                    />
+                    Soy donante de órganos
+                  </label>
+                  <label className={tw(`block text-gray-700 mb-2`)}>
+                    <input
+                      type="checkbox"
+                      checked={isRecipient}
+                      onChange={(e) => setIsRecipient(e.target.checked)}
+                      className={tw(`mr-2`)}
+                    />
+                    Soy receptor de órganos
+                  </label>
+                </div>
+                <button
+                  className={tw(`w-full bg-[#FF5A5A] text-white p-3 rounded-lg font-semibold hover:bg-[#FF3A3A] transition duration-200`)}
+                  onClick={handleUpdate}
+                >
+                  Guardar cambios
+                </button>
+                <button
+                  className={tw(`w-full bg-gray-500 text-white p-3 rounded-lg font-semibold mt-4 hover:bg-gray-600 transition duration-200`)}
+                  onClick={() => setEditMode(false)}
+                >
+                  Cancelar
+                </button>
+              </>
+            ) : (
+              <>
+                <p className={tw(`text-lg mb-2`)}><strong>Name:</strong> {user.name} {user.lastname}</p>
+                <p className={tw(`text-lg mb-2`)}><strong>Email:</strong> {user.email}</p>
+                <p className={tw(`text-lg mb-4`)}><strong>Teléfono:</strong> {user.phone}</p>
+                <button
+                  className={tw(`w-full bg-[#FF5A5A] text-white p-3 rounded-lg font-semibold hover:bg-[#FF3A3A] transition duration-200`)}
+                  onClick={handleEdit}
+                >
+                  Edita tu perfil
+                </button>
+                <button
+                  className={tw(`w-full bg-gray-500 text-white p-3 rounded-lg font-semibold mt-4 hover:bg-gray-600 transition duration-200`)}
+                  onClick={() => router.push('/dashboard')}
+                >
+                  Regresar al dashboard
+                </button>
+              </>
+            )}
+          </div>
         </div>
-    );
-}
+      );
+    };
 
 export default UserProfile;

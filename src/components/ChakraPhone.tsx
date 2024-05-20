@@ -1,18 +1,18 @@
-import { Button, ChakraProvider, Input } from "@chakra-ui/react";
+import { Button, ChakraProvider, Input, Box } from "@chakra-ui/react";
 import React from "react";
-
 import { CountrySelector, usePhoneInput } from "react-international-phone";
+import 'react-international-phone/style.css';
 
 interface ChakraPhoneProps {
   value: string;
   onChange: (phone: string) => void;
-  placeholder?: string; // Add this line to include the placeholder property
+  placeholder?: string;
 }
-
 
 export const ChakraPhone: React.FC<ChakraPhoneProps> = ({
   value,
-  onChange
+  onChange,
+  placeholder = "Ingrese su número de teléfono" // Default placeholder
 }) => {
   const phoneInput = usePhoneInput({
     defaultCountry: "us",
@@ -24,9 +24,9 @@ export const ChakraPhone: React.FC<ChakraPhoneProps> = ({
 
   return (
     <ChakraProvider>
-      <div style={{ display: 'flex', flexDirection: 'row' }}>
+      <Box display="flex" alignItems="center">
         <CountrySelector
-          selectedCountry={phoneInput.country?.iso2 || "US"} // Default to "US" if undefined
+          selectedCountry={phoneInput.country?.iso2 || "US"}
           onSelect={(country) => phoneInput.setCountry(country.iso2)}
           renderButtonWrapper={({ children, rootProps }) => (
             <Button {...rootProps} variant="outline" px="4px" mr="8px" width="fit-content">
@@ -35,18 +35,15 @@ export const ChakraPhone: React.FC<ChakraPhoneProps> = ({
           )}
         />
         <Input
-          placeholder="Ingrese su número de teléfono" // Placeholder added here
+          placeholder={placeholder}
           type="tel"
           color="primary"
           value={phoneInput.phone}
           onChange={phoneInput.handlePhoneValueChange}
-          width="200px"
+          width="100%"
           ref={phoneInput.inputRef}
-          style={{ zIndex: 2 }} // Added z-index
         />
-      </div>
-
-
+      </Box>
     </ChakraProvider>
   );
 };

@@ -1,31 +1,27 @@
 import React, { FC } from 'react';
 import CustomButton from './CustomButton';
-import { Button } from '@chakra-ui/react';
+import '../styles/LoginForm.css';
 
 interface ScrollableCardProps {
-  isOpen: boolean;
   onClose: () => void;
-  onAcceptTerms: () => void; // Ensure this function is defined in the props
+  onAcceptTerms: () => void;
 }
 
-const ScrollableCard: FC<ScrollableCardProps> = ({ isOpen, onClose, onAcceptTerms }) => {
-  if (!isOpen) return null;
-
+const ScrollableCard: FC<ScrollableCardProps> = ({ onClose, onAcceptTerms }) => {
   return (
-    <div className="modal-backdrop" onClick={onClose}>
-      <div className="scrollable-card" tabIndex={-1}>
-        <div className="card-content">
-          <h2>Términos y Condiciones</h2>
-
-          <section>
-            <h3>Introducción</h3>
+    <div className="modal-backdrop">
+    <div className="scrollable-card">
+        <div className="text-center mb-4">
+          <h2 className="text-2xl font-bold">Términos y Condiciones</h2>
+        </div>
+        <section className="text-left">
+          <h3 className="text-xl font-semibold mb-2">Introducción</h3>
             <p>
               LifeLink, en su compromiso con la solidaridad y la vida, establece la importancia de garantizar el adecuado tratamiento de la información de sus usuarios y miembros de la comunidad, en concordancia con los principios de responsabilidad, respeto, transparencia y equidad.
             </p>
           </section>
-
           <section>
-            <h3>Alcance</h3>
+            <h3 className="text-xl font-semibold mb-2">Alcance</h3>
             <p>
               La presente política de privacidad es vinculante para LifeLink como responsable del tratamiento de datos, así como para sus afiliadas y entidades asociadas, en adelante denominadas "LifeLink". Esta política aplica a todas las actividades relacionadas con el tratamiento de datos personales de los usuarios de LifeLink y su comunidad.
             </p>
@@ -38,21 +34,21 @@ const ScrollableCard: FC<ScrollableCardProps> = ({ isOpen, onClose, onAcceptTerm
           </section>
 
           <section>
-            <h3>Lineamientos generales</h3>
+            <h3 className="text-xl font-semibold mb-2">Lineamientos generales</h3>
             <p>
               Tratamiento al cual serán sometidos los datos personales: LifeLink usará la información personal de sus clientes para los fines autorizados e informados al titular y aquellos señalados en la presente política, siempre que el tratamiento obedezca a un fin legítimo y sea proporcional de acuerdo a la vinculación del cliente, particularmente para lo que resulte necesario para la prestación de los servicios encargados, como ejecutar y cumplir el contrato. La autorización de tratamiento de datos sensibles es facultativa.
             </p>
           </section>
 
           <section>
-            <h3>Finalidades del tratamiento de datos</h3>
+            <h3 className="text-xl font-semibold mb-2">Finalidades del tratamiento de datos</h3>
             <p>
               LifeLink tratará los datos personales de sus usuarios con el fin de facilitar la interacción en la comunidad, proporcionar servicios de apoyo a donantes y receptores de órganos no vitales, y cumplir con las finalidades inherentes al objeto contractual y al funcionamiento de la plataforma.
             </p>
           </section>
 
           <section>
-            <h3>Derechos de los titulares</h3>
+            <h3 className="text-xl font-semibold mb-2">Derechos de los titulares</h3>
             <p>
               Los usuarios de LifeLink tienen derecho a autorizar, revocar, conocer, actualizar y rectificar sus datos personales, así como a solicitar su supresión, de acuerdo con lo establecido en la normativa vigente.
             </p>
@@ -62,7 +58,7 @@ const ScrollableCard: FC<ScrollableCardProps> = ({ isOpen, onClose, onAcceptTerm
           </section>
 
           <section>
-            <h3>Principios generales de tratamiento de datos</h3>
+            <h3 className="text-xl font-semibold mb-2">Principios generales de tratamiento de datos</h3>
             <p>
               LifeLink se compromete a garantizar el tratamiento legal, finalidad legítima, libertad, veracidad y calidad, transparencia, acceso y circulación restringida, seguridad, confidencialidad y entrega de información personal a proveedores de servicios.
             </p>
@@ -82,16 +78,18 @@ const ScrollableCard: FC<ScrollableCardProps> = ({ isOpen, onClose, onAcceptTerm
           </section>
 
           <section>
-            <h3>Vigencia y modificaciones de la política de privacidad</h3>
+            <h3 className="text-xl font-semibold mb-2">Vigencia y modificaciones de la política de privacidad</h3>
             <p>
               Esta política de privacidad entrará en vigencia a partir de la fecha de su publicación y podrá ser modificada por LifeLink en cualquier momento para adaptarse a cambios normativos o necesidades de la plataforma.
             </p>
-          </section>
+            </section>
+            <CustomButton className="btn2 p-2 bg-red-500 text-white rounded-md cursor-pointer transition duration-300 w-full text-base mt-4 hover:bg-red-300" onClick={onAcceptTerms}>Acepta los términos y condiciones</CustomButton>
+            <button className="btn2 p-3 bg-gray-500 text-white rounded-lg cursor-pointer transition duration-300 w-full text-base mt-4 hover:bg-gray-600 shadow-md" onClick={onClose}>
+              Cerrar
+            </button>
+
         </div>
-        <Button className='btn2' style={{marginBottom: 20}} onClick={onClose}>Cerrar</Button>
-        <CustomButton className='btn2' onClick={onAcceptTerms}>Acepta los términos y condiciones</CustomButton>
-      </div>
-    </div> 
+    </div>
   );
 };
 

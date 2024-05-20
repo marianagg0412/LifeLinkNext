@@ -1,32 +1,44 @@
 import router from 'next/router';
 import { useState } from 'react';
-import '../styles/DashboardForm.css';
+import { tw } from 'twind';
 
 const Dashboard = () => {
-    const [showDropdown, setShowDropdown] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
 
-    const toggleDropdown = () => {
-        setShowDropdown(!showDropdown);
-    };
+  const toggleDropdown = () => {
+    setShowDropdown(!showDropdown);
+  };
 
-    const handleBtnClick = () => {
-        toggleDropdown();
-    };
-
-    return (
-        <div>
-            <h1> Próximamente la página principal...</h1>
-            <div style={{position: 'absolute', top: 30, right: 10}}>
-                <img src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png" alt="Menu" onClick={toggleDropdown} style={{cursor: 'pointer', height:50}} />
-            </div>
-            <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-                <div className="dropdown" style={{display: showDropdown? 'block' : 'none'}}>
-                    <button type="button" onClick={() => router.push('/')}>Cerrar sesión</button>
-                    <button type="button" onClick={() => router.push('/profile')}>Abrir perfil</button>
-                </div>
-            </div>
-        </div>
-    );
-}
+  return (
+    <div className={tw(`min-h-screen flex flex-col bg-gray-100`)}>
+      <div className={tw(`relative w-full p-4 flex justify-between items-center bg-white shadow-md`)}>
+        <h1 className={tw(`text-3xl font-bold`)}>Dashboard del usuario</h1>
+        <button onClick={toggleDropdown} className={tw(`cursor-pointer text-blue-500 hover:text-blue-700`)}>
+          Opciones
+        </button>
+      </div>
+      <div className={tw(`flex flex-col items-center justify-center flex-grow`)}>
+        {showDropdown && (
+          <div className={tw(`bg-white shadow-md rounded-lg p-4 mt-4`)}>
+            <button
+              type="button"
+              onClick={() => router.push('/main')}
+              className={tw(`w-full bg-red-500 text-white py-2 px-4 rounded-lg mb-2 hover:bg-red-600 transition duration-200`)}
+            >
+              Cerrar sesión
+            </button>
+            <button
+              type="button"
+              onClick={() => router.push('/profile')}
+              className={tw(`w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-200`)}
+            >
+              Abrir perfil
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
 
 export default Dashboard;
