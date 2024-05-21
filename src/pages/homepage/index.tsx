@@ -9,7 +9,8 @@ import SocialProof from '@/components/homepage/social-proof';
 import PricingTable from '@/components/homepage/pricing-table';
 import Footer from '@/components/homepage/footer';
 
-export default function Home() {
+export default function 
+    Home() {
   return (
     <Page>
       <NextSeo
