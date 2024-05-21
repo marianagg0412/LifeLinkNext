@@ -4,22 +4,20 @@ import Quote from '@/constants/svg/quote.svg';
 
 const socialProofs = [
   {
-    name: `John Doe`,
-    company: `Alphabet Inc.`,
+    name: `John Wick`,
+    company: `Health Inc.`,
     image: `/images/social-1.webp`,
-    text: `Commodo Lorem consequat ea consectetur pariatur proident excepteur.
-    Pariatur eiusmod minim minim ipsum tempor aute excepteur minim eu nisi laboris.
-    Duis sunt labore eu eu cupidatat labore commodo id aliquip.`,
+    text: `LifeLink ayudó a ampliar las oportunidades para muchos de mis pacientes que 
+    se les dificulta acceder a órganos que no se encuentran muy facilmente. Es una herramienta
+    revolucionaria que todos deberían tener en cuenta.`,
   },
   {
-    name: `Jack Doe`,
-    company: `Amazon.com, Inc.`,
+    name: `Collin Bridgerton`,
+    company: `Cliente receptor`,
     image: `/images/social-2.webp`,
-    text: `Anim labore ut amet cupidatat pariatur pariatur labore ad est.
-    Fugiat eiusmod dolore aliquip aute duis esse excepteur amet.
-    Sit cupidatat ipsum culpa nisi esse ipsum culpa in consectetur.
-    Enim incididunt do sunt ex do. Proident duis nulla minim sunt irure est
-    magna nostrud Lorem consectetur irure.`,
+    text: `Mi experiencia ha sido muy satisfactoria gracias al acompañamiento que me han brindado.
+    Al principio no entendía muy bien cómo era el proceso y tenía temores, pero descubrí que es un
+    proceso muy seguro y confiable.`,
   },
 ];
 

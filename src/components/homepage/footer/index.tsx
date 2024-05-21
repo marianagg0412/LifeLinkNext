@@ -2,18 +2,18 @@ import { tw } from 'twind';
 import Button from '@/components/homepage/button';
 
 
-const productLinks = [`Features`, `Customers`, `Platform`, `Pricing`, `Enterprise`, `What's new?`];
-const aboutLinks = [`About Us`, `Careers`, `Leadership`, `Blog`, `Events`, `Press`];
+const productLinks = [`Características`, `Clientes`, `Platforma`, `Precios`, `Entidades`, `Lo mas nuevo`];
+const aboutLinks = [`Sobre nosotros`, `Categorías`, `Líderes`, `Blog`, `Eventos`, `Noticias`];
 const resourceLinks = [
-  `Get started`,
-  `Guides`,
-  `Tools`,
-  `Case studies`,
-  `Solutions`,
+  `Comienza`,
+  `Guías`,
+  `Herramientas`,
+  `Casos de estudio`,
+  `Soluciones`,
   `FAQs`,
-  `Help Center`,
-  `Training`,
-  `Other resources`,
+  `Centro de ayuda`,
+  `Asesoramiento`,
+  `Otros recursos`,
 ];
 
 const Footer = () => (
@@ -27,7 +27,7 @@ const Footer = () => (
         <ul className={tw(`text-lg font-light flex flex-wrap w-full`)}>
           <li className={tw(`w-1/2 md:w-1/3 lg:w-1/3`)}>
             <div>
-              <h4 className={tw(`text-gray-900 text-base font-bold mb-1`)}>Product</h4>
+              <h4 className={tw(`text-gray-900 text-base font-bold mb-1`)}>Producto</h4>
               <ul>
                 {productLinks.map((link) => (
                   <li className={tw(`text-gray-800 text-sm font-medium leading-6`)} key={link}>
@@ -39,7 +39,7 @@ const Footer = () => (
           </li>
           <li className={tw(`w-1/2 md:w-1/3 lg:w-1/3`)}>
             <div>
-              <h4 className={tw(`text-gray-900 text-base font-bold mb-1`)}>Resources</h4>
+              <h4 className={tw(`text-gray-900 text-base font-bold mb-1`)}>Recursos</h4>
               <ul>
                 {resourceLinks.map((link) => (
                   <li className={tw(`text-gray-800 text-sm font-medium leading-6`)} key={link}>
@@ -51,7 +51,7 @@ const Footer = () => (
           </li>
           <li className={tw(`w-1/2 md:w-1/3 lg:w-1/3`)}>
             <div>
-              <h4 className={tw(`text-gray-900 text-base font-bold mb-1`)}>About Us</h4>
+              <h4 className={tw(`text-gray-900 text-base font-bold mb-1`)}>Conócenos</h4>
               <ul>
                 {aboutLinks.map((link) => (
                   <li className={tw(`text-gray-800 text-sm font-medium leading-6`)} key={link}>
@@ -65,7 +65,7 @@ const Footer = () => (
       </div>
       <div className={tw(`w-full lg:w-1/2 mt-12 lg:mt-0`)}>
         <div className={tw(`border border-gray-400 rounded py-5 px-4`)}>
-          <h4 className={tw(`font-mono text-sm uppercase text-gray-500 mb-3`)}>Subscribe our newsletter</h4>
+          <h4 className={tw(`font-mono text-sm uppercase text-gray-500 mb-3`)}>Subscríbete para noticias</h4>
           <div className={tw(`flex w-full`)}>
             <input
               aria-label="email address"
