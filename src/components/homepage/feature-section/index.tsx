@@ -1,5 +1,6 @@
 import { tw } from 'twind';
 import Check from '@/constants/svg/check.svg';
+import ScrollableCard from '../../TermsAndConditions';
 
 const FeatureSection = () => (
   <section className={tw(`bg-white pb-6`)}>
@@ -18,8 +19,8 @@ const FeatureSection = () => (
               <div className={tw(`ml-4 text-xl`)}>Aumenta la donación</div>
             </div>
             <p className={tw(`leading-loose text-gray-500`)}>
-              Consectetur pariatur irure exercitation sit amet id consectetur consecteturmagna et Lorem labore qui
-              velit.
+              Siéntete orgulloso de ser parte de una comunidad que busca mejorar la vida de otros. Ayuda 
+              a aumentar la calidad de vida de alguien que lo necesita.
             </p>
           </div>
           <div className={tw(`w-full border-b md:w-1/2 lg:w-1/3 lg:border-r p-8`)}>
@@ -28,7 +29,8 @@ const FeatureSection = () => (
               <div className={tw(`ml-4 text-xl`)}>Plataforma moderna</div>
             </div>
             <p className={tw(`leading-loose text-gray-500 `)}>
-              Labore duis pariatur est exercitation laboris cupidatat amet cillum. Amet nisi ullamco.
+              Te brindamos todas las herramientas y facilidades para que tu experiencia en LifeLink 
+              impecable. Nuestra plataforma es fácil de usar y está diseñada para ti.
             </p>
           </div>
           <div className={tw(`w-full border-b md:w-1/2 md:border-r lg:w-1/3 lg:border-r-0 p-8`)}>
@@ -37,7 +39,8 @@ const FeatureSection = () => (
               <div className={tw(`ml-4 text-xl`)}>Integración con entidades de salud</div>
             </div>
             <p className={tw(`leading-loose text-gray-500`)}>
-              Elit deserunt nisi esse duis cupidatat proident sit minim mollit officia pariatur incididunt in tempor.
+              Siéntete seguro, ya que gran parte de nuestra comunidad cuenta con el apoyo de varias entidades
+              reconocidas y profesionales, quienes ofrecen todo su apoyo y servicio.
             </p>
           </div>
           <div className={tw(`w-full border-b md:w-1/2 lg:w-1/3 lg:border-r lg:border-b-0 p-8`)}>
@@ -46,7 +49,8 @@ const FeatureSection = () => (
               <div className={tw(`ml-4 text-xl`)}>Recomendado por expertos</div>
             </div>
             <p className={tw(`leading-loose text-gray-500`)}>
-              Velit sit tempor pariatur quis pariatur incididunt culpa dolor voluptate officia incididunt velit dolore.
+              La comunidad de salud sabe que puede confiar en nosotros, ya que ofrecemos los mejores resultados post-operatorios,
+              y la mejor calidad en nuestros productos.
             </p>
           </div>
           <div className={tw(`w-full border-b md:w-1/2 md:border-r md:border-b-0 lg:w-1/3 lg:border-b-0 p-8`)}>
@@ -55,8 +59,7 @@ const FeatureSection = () => (
               <div className={tw(`ml-4 text-xl`)}>Construido con legislación vigente</div>
             </div>
             <p className={tw(`leading-loose text-gray-500`)}>
-              Laboris elit consectetur sint nisi eu mollit proident sit magna velit adipisicing consequat amet
-              reprehenderit.
+              Tenemos todos los requisitos de la ley al día, para que tengas plena seguridad que tu experiencia va a ser segura.
             </p>
           </div>
           <div className={tw(`w-full md:w-1/2 lg:w-1/3 p-8`)}>
@@ -65,8 +68,8 @@ const FeatureSection = () => (
               <div className={tw(`ml-4 text-xl`)}>Variedad de órganos disponibles</div>
             </div>
             <p className={tw(`leading-loose text-gray-500`)}>
-              Nostrud excepteur incididunt proident sit nulla ipsum sunt nostrud est esse adipisicing irure officia
-              consectetur.
+              Siéntete libre de explorar en un amplio catálogo donde encontrarás gran variedad de productos, para cubrir 
+              tus necesidades por completo.
             </p>
           </div>
         </div>

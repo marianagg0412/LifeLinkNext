@@ -45,17 +45,17 @@ const ParticleBg = () => (
 
 const articles = [
   {
-    title: `Velit reprehenderit culpa Lorem reprehenderit excepteur ipsum esse.`,
+    title: `Cómo tener un tratamiento médico exitoso.`,
     image: `/images/case-1.webp`,
     alt: `Proident pariatur est.`,
   },
   {
-    title: `Velit reprehenderit culpa Lorem reprehenderit ipsum esse.`,
+    title: `Los signos y síntomas en la salud.`,
     image: `/images/case-2.webp`,
     alt: `Proident pariatur est.`,
   },
   {
-    title: `Velit reprehenderit culpa Lorem reprehenderit excepteur esse.`,
+    title: `Cáncer infantil.`,
     image: `/images/case-3.webp`,
     alt: `Proident pariatur est.`,
   },

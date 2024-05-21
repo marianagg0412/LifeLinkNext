@@ -3,22 +3,22 @@ import FeatureSvg from '@/constants/svg/features.svg';
 
 const listItems = [
   {
-    title: `Designers`,
-    description: `Officia et fugiat mollit qui. Dolor elit aliqua voluptate ipsum
-    excepteur cillum consequat consectetur duis magna qui eu consequat occaecat.
-    Deserunt nisi sit.`,
+    title: `¿Qué rol cumples?`,
+    description: `Identifícate como donante o receptor, ¡o incluso ambos!. 
+    Ser participante de LifeLink tiene beneficios para todos, y siempre
+    estaremos para ayudarte a ti o a un ser querido.`,
   },
   {
-    title: `Developers`,
-    description: `Pariatur consectetur laboris exercitation duis laboris.
-    Commodo duis fugiat magna fugiat et ut anim elit. Tempor aute ex qui
-    tempor tempor.`,
+    title: `Compartenos tus datos`,
+    description: `Para nosotros es muy importante tu seguridad y la de 
+    toda nuestra comunidad, por eso queremos conocerte mejor. Asegurate de 
+    compartir tu información de manera correcta y verídica.`,
   },
   {
-    title: `Product owners`,
-    description: `Ullamco consectetur ipsum eiusmod nisi adipisicing sint anim
-    dolore aute excepteur. Voluptate ea ullamco sunt eu elit qui aliquip.
-    Adipisicing.`,
+    title: `Explora`,
+    description: `LifeLink tiene un gran espacio para que puedas explorar tus
+    mejores opciones. Tómate tu tiempo y revisa todas las posibilidades que
+    te ofrecemos para que puedas tomar la mejor decisión.`,
   },
 ];
 

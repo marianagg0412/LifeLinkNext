@@ -3,7 +3,7 @@ import Home from '@/pages/homepage/index';
 const Main = () => {
     return (
         <div>
-            <Home />
+            <Home/>
         </div>
     );
 }
