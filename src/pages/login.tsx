@@ -2,6 +2,7 @@ import { tw } from 'twind';
 import { useState, useEffect } from 'react';
 import { NextRouter, useRouter } from 'next/router';
 import axios from 'axios';
+import MyButton from "@/components/RefreshButton";
 
 const handleLogin = async (userData: { email: string; password: string; }, router: NextRouter) => {
     try {
@@ -67,7 +68,7 @@ const Login = () => {
         </div>
         <button className={tw(`w-full bg-[#FF5A5A] text-white p-3 rounded-lg font-semibold hover:bg-[#FF3A3A] transition duration-200`)}>Inicia Sesión</button>
       </form>
-      <button className={tw(`w-full bg-gray-500 text-white p-3 rounded-lg font-semibold mt-4 hover:bg-gray-600 transition duration-200`)} onClick={() => router.push('/dashboard')}>Retornar a la página principal</button>
+        <MyButton/>
     </div>
   </div>
 );

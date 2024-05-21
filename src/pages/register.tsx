@@ -7,6 +7,7 @@ import Modal from '@/components/Modal';
 import CustomButton from '@/components/CustomButton';
 import { tw } from 'twind';
 import '../styles/LoginForm.css';
+import MyButton from "@/components/RefreshButton";
 
 const Register = () => {
   const router = useRouter();
@@ -197,7 +198,7 @@ const Register = () => {
       </CustomButton>
       <Modal isOpen={isModalOpen} onClose={closeModal} onAcceptTerms={onAcceptTerms} />
     </div>
-        <button className={tw(`w-full bg-gray-500 text-white p-3 rounded-lg font-semibold mt-4 hover:bg-gray-600 transition duration-200`)} onClick={() => router.push('/main')}>Retornar a menu</button>
+        <MyButton/>
       </div>
     </div>
   );
