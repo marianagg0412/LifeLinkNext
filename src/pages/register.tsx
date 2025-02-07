@@ -27,6 +27,7 @@ const Register = () => {
 
   const onAcceptTerms = () => {
     console.log('Terms accepted');
+    setTermsAccepted(true);
     closeModal();
   };
 
