@@ -42,7 +42,7 @@ type Link = {
 };
 
 
-const links = [
+const links: Link[] = [
   {
     label: `Quienes somos`,
     href: `/somos`,
