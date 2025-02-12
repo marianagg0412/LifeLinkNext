@@ -13,7 +13,7 @@ const UpdateProduct = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
-    price: "",
+    price: 0,
     description: "",
     image: "",
     category: "Tejido Blando",
@@ -61,7 +61,16 @@ const UpdateProduct = () => {
   }, [id]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    let value: any = e.target.value;
+
+    if (e.target.name === "price") {
+      value = parseFloat(value);
+      if (isNaN(value) || value < 0) {
+        value = 0; // Ensure it's a valid number
+      }
+    }
+    
+    setFormData({ ...formData, [e.target.name]: value });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
