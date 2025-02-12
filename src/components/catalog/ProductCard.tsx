@@ -43,11 +43,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
         headers: { Authorization: `Bearer ${token}` }
       }
       console.log(config);
-      await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/product/${product.id}/deactivate`, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        } 
-      });
+      await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/product/${product.id}/deactivate`, {}, config);
 
 
 
