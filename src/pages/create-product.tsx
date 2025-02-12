@@ -1,9 +1,7 @@
 import axios from "axios";
 import { useRouter } from "next/router"
 import React, { useState } from "react";
-
-
-
+import {tw} from 'twind';
 
 const CreateProduct = () => {
 
@@ -47,7 +45,7 @@ const CreateProduct = () => {
                 { headers: { Authorization: `Bearer ${token}` } }
             );
 
-            alert('Organo creado correctamente');
+            alert('Órgano creado correctamente');
             router.push('/catalogo');
         } catch (error:any) {
             console.error("Error al agregar organo:", error);
@@ -59,6 +57,14 @@ const CreateProduct = () => {
   return (
     <div className="container mx-auto p-8 max-w-md">
         <h1 className="text-2xl font-bold mb-4">Agregar organo</h1>
+
+        <button
+            onClick={() => router.push('/catalogo')}
+            className={tw`absolute top-4 right-4 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-200`}
+          >
+            Volver al catálogo
+          </button>
+
         <form onSubmit= {handleSubmit} className="bg-white p-6 rounded-lg shadow-md">
             <label className="block mb-2">Nombre:</label>
             <input 
@@ -82,7 +88,7 @@ const CreateProduct = () => {
                 required
             />
 
-            <label className="block mb-2">Descripcion:</label>
+            <label className="block mb-2">Descripción:</label>
             <input 
                 type="text" 
                 name="description"
@@ -93,7 +99,7 @@ const CreateProduct = () => {
                 required
             />
 
-            <label className="block mb-2">Image (URL):</label>
+            <label className="block mb-2">URL de la imagen:</label>
             <input 
                 type="url" 
                 name="image"
@@ -103,7 +109,7 @@ const CreateProduct = () => {
                 required
             />
 
-            <label className="block mb-2">Categoria:</label>
+            <label className="block mb-2">Categoría:</label>
             <select name="category" value={formData.category} onChange={handleChange} className="w-full p-2 border rounded-md mb-4">
                 <option>Tejido Blando</option>
                 <option>Tejido Duro</option>
