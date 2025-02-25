@@ -74,8 +74,8 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
             className={tw`w-80 h-40 object-cover bg-white rounded-xl shadow-lg `}
           />
         ) : (
-          <div className={tw`w-24 h-24 bg-gray-300 flex items-center justify-center rounded-xl`}>
-            <span className={tw`text-gray-500 text-sm`}>No Image</span>
+          <div className={tw`w-28 h-20 bg-gray-300 flex items-center justify-center rounded-md`}>
+            <span className={tw`text-gray-500 text-sm`}>Imagen no disponible</span>
           </div>
         )}
       </div>
@@ -88,9 +88,9 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
       </div>
 
       
-      <div className={tw`  mt-0 mb-5 flex flex-col items-center space-y-2`}>
-        <button className={tw`w-4/5 bg-pink-500 text-white py-2 rounded-lg hover:bg-pink-700 transition`}>
-          Buy Now
+      <div className={tw`mt-4`}>
+        <button className={tw`w-full bg-pink-500 text-white py-2 rounded-lg hover:bg-pink-700 transition`}>
+          Comprar ahora
         </button>
 
         {isAdmin && (
@@ -106,7 +106,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
               onClick={handleDeactivate}
               className={tw`w-4/5 bg-red-500 text-white py-2 rounded-lg hover:bg-red-700 transition`}
             >
-              Deactivate
+              Eliminar
             </button>
           </>
         )}

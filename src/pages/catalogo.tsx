@@ -5,6 +5,7 @@ import { headers } from 'next/headers';
 import axios from 'axios';
 import ProductCard from '@/components/catalog/ProductCard';
 import { tw } from 'twind';
+import { useRouter } from 'next/router';
 
 
 
@@ -22,7 +23,7 @@ interface Product {
 
 
 const Catalogo = () => {
-
+  const router = useRouter();
   const [products, setProducts] = useState<Product[]>([]);
   const [isAdmin, setIsAdmin] = useState(false);
 
@@ -58,17 +59,26 @@ const Catalogo = () => {
 
   return (
     <div className={tw`container mx-auto p-8`}>
-      {/* ✅ Header with Create Button (Only for Admins) */}
+      {/* ✅ Header with Buttons */}
       <div className={tw`flex justify-between items-center mb-6`}>
-        <h1 className={tw`text-3xl font-bold text-green-600`}>Product Catalog</h1>
+        <h1 className={tw`text-3xl font-bold text-green-600`}>Catálogo de Órganos</h1>
 
-        {isAdmin && (
-          <Link href="/create-product">
-            <button className={tw`bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-700`}>
-              Agregar órgano
-            </button>
-          </Link>
-        )}
+        <div className={tw`flex space-x-4`}>
+          {isAdmin && (
+            <Link href="/create-product">
+              <button className={tw`bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-700`}>
+                Agregar órgano
+              </button>
+            </Link>
+          )}
+
+          <button
+            onClick={() => router.push('/main')}
+            className={tw`bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-200`}
+          >
+            Volver a la página principal
+          </button>
+        </div>
       </div>
 
       {/* ✅ Grid Layout for Product Cards */}
