@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useRouter } from "next/router"
 import React, { useState } from "react";
+import { tw } from "twind";
 
 
 
@@ -56,80 +57,101 @@ const CreateProduct = () => {
         }
     };
 
-  return (
-    <div className="container mx-auto p-8 max-w-md">
-        <h1 className="text-2xl font-bold mb-4">Agregar organo</h1>
-        <form onSubmit= {handleSubmit} className="bg-white p-6 rounded-lg shadow-md">
-            <label className="block mb-2">Nombre:</label>
-            <input 
-                type="text" 
-                name="name"
-                maxLength={150}
-                value={formData.name}
-                onChange={handleChange}
-                className="w-full p-2 border rounded-md mb-4"
-                required
-            />
-
-            <label className="block mb-2">Precio:</label>
-            <input 
-                type="text" 
-                name="price"
-                min="0"
-                value={formData.price}
-                onChange={handleChange}
-                className="w-full p-2 border rounded-md mb-4"
-                required
-            />
-
-            <label className="block mb-2">Descripcion:</label>
-            <input 
-                type="text" 
-                name="description"
-                maxLength={500}
-                value={formData.description}
-                onChange={handleChange}
-                className="w-full p-2 border rounded-md mb-4"
-                required
-            />
-
-            <label className="block mb-2">Image (URL):</label>
-            <input 
-                type="url" 
-                name="image"
-                value={formData.image}
-                onChange={handleChange}
-                className="w-full p-2 border rounded-md mb-4"
-                required
-            />
-
-            <label className="block mb-2">Categoria:</label>
-            <select name="category" value={formData.category} onChange={handleChange} className="w-full p-2 border rounded-md mb-4">
-                <option>Tejido Blando</option>
-                <option>Tejido Duro</option>
-                <option>Tejido Ocular</option>
-            </select>
-
-            <label className="block mb-2">Uso:</label>
-            <select name="use" value={formData.use} onChange={handleChange} className="w-full p-2 border rounded-md mb-4">
-                <option value="Rehabilitación Ortopédica">Rehabilitación Ortopédica</option>
-                <option value="Reparación de Heridas">Reparación de Heridas</option>
-                <option value="Recuperación Visual">Recuperación Visual</option>
-                <option value="Mejora de la Función Cardíaca">Mejora de la Función Cardíaca</option>
-            </select>
-
-            <label className="block mb-2">Especialidad Medica:</label>
-            <select name="specialty" value={formData.specialty} onChange={handleChange} className="w-full p-2 border rounded-md mb-4">
-                <option value="Ortopedia">Ortopedia</option>
-                <option value="Cardiología">Cardiología</option>
-                <option value="Oftalmología">Oftalmología</option>
-                <option value="Cirugía Plástica">Cirugía Plástica</option>
-            </select>
-
-            <button type="submit" className="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-700">
-                Agregar
-            </button>
-        </form>
+  
+return (
+    <div className={tw`container mx-auto p-8 max-w-md`}>
+      <h1 className={tw`text-2xl font-bold mb-4`}>Agregar órgano</h1>
+      <form onSubmit={handleSubmit} className={tw`bg-white p-6 rounded-lg shadow-md`}>
+        
+        <label className={tw`block mb-2`}>Nombre:</label>
+        <input
+          type="text"
+          name="name"
+          maxLength={150}
+          value={formData.name}
+          onChange={handleChange}
+          className={tw`w-full p-2 border rounded-md mb-4`}
+          required
+        />
+  
+        <label className={tw`block mb-2`}>Precio:</label>
+        <input
+          type="text"
+          name="price"
+          min="0"
+          value={formData.price}
+          onChange={handleChange}
+          className={tw`w-full p-2 border rounded-md mb-4`}
+          required
+        />
+  
+        <label className={tw`block mb-2`}>Descripción:</label>
+        <input
+          type="text"
+          name="description"
+          maxLength={500}
+          value={formData.description}
+          onChange={handleChange}
+          className={tw`w-full p-2 border rounded-md mb-4`}
+          required
+        />
+  
+        <label className={tw`block mb-2`}>Imagen (URL):</label>
+        <input
+          type="url"
+          name="image"
+          value={formData.image}
+          onChange={handleChange}
+          className={tw`w-full p-2 border rounded-md mb-4`}
+          required
+        />
+  
+        <label className={tw`block mb-2`}>Categoría:</label>
+        <select
+          name="category"
+          value={formData.category}
+          onChange={handleChange}
+          className={tw`w-full p-2 border rounded-md mb-4`}
+        >
+          <option>Tejido Blando</option>
+          <option>Tejido Duro</option>
+          <option>Tejido Ocular</option>
+        </select>
+  
+        <label className={tw`block mb-2`}>Uso:</label>
+        <select
+          name="use"
+          value={formData.use}
+          onChange={handleChange}
+          className={tw`w-full p-2 border rounded-md mb-4`}
+        >
+          <option value="Rehabilitación Ortopédica">Rehabilitación Ortopédica</option>
+          <option value="Reparación de Heridas">Reparación de Heridas</option>
+          <option value="Recuperación Visual">Recuperación Visual</option>
+          <option value="Mejora de la Función Cardíaca">Mejora de la Función Cardíaca</option>
+        </select>
+  
+        <label className={tw`block mb-2`}>Especialidad Médica:</label>
+        <select
+          name="specialty"
+          value={formData.specialty}
+          onChange={handleChange}
+          className={tw`w-full p-2 border rounded-md mb-4`}
+        >
+          <option value="Ortopedia">Ortopedia</option>
+          <option value="Cardiología">Cardiología</option>
+          <option value="Oftalmología">Oftalmología</option>
+          <option value="Cirugía Plástica">Cirugía Plástica</option>
+        </select>
+  
+        <button
+          type="submit"
+          className={tw`w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-700`}
+        >
+          Agregar
+        </button>
+        
+      </form>
     </div>
   );
 };
