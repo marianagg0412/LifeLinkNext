@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import router, { useRouter } from 'next/router';
 import { isAdminUser } from "@/utils/authUtils";
 import axios from "axios";
+import { GradientB } from "../atomic-design/molecules/atoms/buttons/GradientB";
+import { HomeIcon, Rocket, ShoppingBag, Trash } from "lucide-react";
 
 interface Product {
   id: string;
@@ -58,10 +60,10 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
   };
 
   return (
-    <div className={tw`bg-white rounded-xl shadow-lg overflow-hidden w-full max-w-sm mx-auto relative transition hover:scale-105`}>
+    <div className={tw`bg-[#F1EBE4] rounded-xl shadow-lg overflow-hidden w-full max-w-sm mx-auto relative transition hover:scale-105`}>
       
       
-      <div className={tw`bg-gradient-to-b from-pink-500 to-pink-300 h-36 relative rounded-t-xl`}>
+      <div className={tw`bg-[#FFBDB4] h-36 relative rounded-t-xl`}>
         <p className={tw`text-white text-lg font-bold absolute top-3 left-4`}>{product.specialty}</p>
       </div>
 
@@ -82,30 +84,49 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
 
       
       <div className={tw`text-center mt-20 mb-0 p-6`}>
-        <h2 className={tw`text-xl font-bold text-gray-800 mt-4`}>{product.name}</h2>
+        <h2 className={tw`text-xl font-bold text-[#46C6D7] mt-4`}>{product.name}</h2>
         <p className={tw`text-gray-500 text-sm mt-5`}>{product.description}</p>
-        <p className={tw`text-pink-600 font-bold text-lg mt-3`}>${product.price}</p>
+        <p className={tw`text-[#F72967] font-bold text-lg mt-3`}>${product.price}</p>
       </div>
 
       
-      <div className={tw`mt-4`}>
-        <button className={tw`w-full bg-pink-500 text-white py-2 rounded-lg hover:bg-pink-700 transition`}>
-          Comprar ahora
-        </button>
+      <div className={tw` mb-6 flex flex-col items-center justify-center space-y-2 `}>
+      <GradientB  
+                label="Comprar Ahora"
+                onClick={handleUpdate}
+                
+                
+                
+            >
+              
+            </GradientB>
 
         {isAdmin && (
           <>
-            <button
+            {/* <button
               onClick={handleUpdate}
               className={tw`w-4/5 bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-700 transition`}
             >
               Actualizar
+            </button> */}
+
+            <button 
+            onClick={handleUpdate}
+            type="button" className={tw`w-4/5 text-white bg-[#BCACCD] hover:bg-[#92D1FF] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center justify-center gap-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800`}
+            >
+            <Rocket/>
+            Actualizar
             </button>
+
+
 
             <button
               onClick={handleDeactivate}
-              className={tw`w-4/5 bg-red-500 text-white py-2 rounded-lg hover:bg-red-700 transition`}
-            >
+              className={tw`w-4/5 text-white bg-[#ffd058] hover:bg-red-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center justify-center gap-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800`}
+              >
+              <Trash/>
+            
+            
               Eliminar
             </button>
           </>

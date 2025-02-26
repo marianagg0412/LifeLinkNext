@@ -14,6 +14,9 @@ const config: Config = {
       colors: {
         'custom-red': '#FF5A5A',
       },
+      fontFamily: {
+        lilita: ['Lilita One', 'sans-serif'],
+      }
     },
   },
   plugins: [],

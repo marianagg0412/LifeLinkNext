@@ -37,6 +37,12 @@ class MyDocument extends Document {
       <Html lang="en">
         <Head>
           <script async src="https://scripts.simpleanalyticscdn.com/latest.js" />
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap"
+            rel="stylesheet"
+          />
         </Head>
         <body>
           <Main />
