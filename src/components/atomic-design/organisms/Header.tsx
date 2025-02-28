@@ -22,7 +22,7 @@ export default function Header(){
                     <div className={tw`hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1`} id="mobile-menu-2">
                         <ul className={tw`flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0`}>
                             <li>
-                                <a href="/" className={tw`block py-2 pr-4 pl-3 text-[#FFBCBB] rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white`} aria-current="page">Home</a>
+                                <a href="/main" className={tw`block py-2 pr-4 pl-3 text-[#FFBCBB] rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white`} aria-current="page">Home</a>
                             </li>
                             <HeaderW href="/catalogo" label="Catalogo"/>
                             <HeaderW href="/somos" label="Quienes Somos"/>

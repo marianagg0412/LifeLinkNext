@@ -14,8 +14,11 @@ import { tw } from 'twind'
 import { BriefcaseMedical, Calendar, ClipboardPlus, Currency, DollarSign, Home, PackagePlus } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import { useRouter } from 'next/router'
   
 export default function CHeader () {
+
+    const router = useRouter();
     const [isAdmin, setIsAdmin] = useState(false);
 
     useEffect(() => {
@@ -39,7 +42,7 @@ export default function CHeader () {
         return (
             <div className={tw`lg:flex lg:items-center lg:justify-between mt-10 p-5`}>
               <div className={tw`min-w-0 flex-1`}>
-                <h3 className={tw`text-2xl/7 font-lilita text-[#587032] sm:truncate sm:text-3xl sm:tracking-tight mb-2`}>
+                <h3 className={tw`text-2xl/7 font-lilita text-[#587032] sm:truncate sm:text-3xl sm:tracking-tight mb-2`} style={{ fontFamily: '"Lilita One"' }}>
                   Catalogo de Organos
                 </h3>
                 <div className={tw`mt-1 flex flex-col sm:mt-0 sm:flex-row sm:flex-wrap sm:space-x-6 text-[#F67227]`}>
@@ -66,6 +69,7 @@ export default function CHeader () {
                 <span className={tw`ml-3 hidden sm:block`}>
                   <button
                     type="button"
+                    onClick={() => router.push('/main')}
                     className={tw`inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-[#587032] ring-1 shadow-xs ring-gray-300 ring-inset hover:text-[#F04639] gap-2`}
                   >
                     <Home/>
@@ -77,6 +81,7 @@ export default function CHeader () {
 
                     <span className={tw`sm:ml-3 `}>
                     <button
+                      onClick={() => router.push('/create-product')}
                       type="button"
                       className={tw`gap-2 inline-flex items-center rounded-md bg-[#E764A5] px-3 py-2 text-sm font-semibold text-[#FFBCBB] shadow-xs hover:bg-[#FFBCBB] hover:text-[#E764A5] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
                     >
