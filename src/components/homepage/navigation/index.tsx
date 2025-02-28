@@ -19,7 +19,7 @@ const handleCatalogoClick = async () => {
       try {
         const response = await axios.get('http://localhost:3000/auth/profile', config);
         if (response.data.user != null) {
-          await router.push('/catalogo'); // Navigate to Catalogo if token is valid
+          router.push('/catalogo'); // Navigate to Catalogo if token is valid
         } else {
           await router.push('/login');
           alert('Por favor inicie sesión para ver el catálogo'); // Show error if token is invalid
@@ -42,7 +42,7 @@ type Link = {
 };
 
 
-const links = [
+const links: Link[] = [
   {
     label: `Quienes somos`,
     href: `/somos`,
@@ -149,7 +149,7 @@ const Navigation = () => {
                 <img className={tw(`h-12 w-12`)} src="logo-transparent.png" alt="logo" width={48} height={48} />
               </div>
               <div className={tw(`hidden md:block`)}>
-                <div className={tw(`ml-10 flex items-baseline space-x-4`)}>
+                {/* <div className={tw(`ml-10 flex items-baseline space-x-4`)}>
                   {links.map((link) => (
                       <a
                           key={link.label}
@@ -160,7 +160,29 @@ const Navigation = () => {
                         {link.label}
                       </a>
                   ))}
+                </div> */}
+                <div className={tw(`ml-10 flex items-baseline space-x-4`)}>
+                  {links.map((link) => (
+                    link.onClick ? (
+                      <button
+                        key={link.label}
+                        onClick={link.onClick}
+                        className={tw(`text-gray-500 hover:text-gray-600 px-3 py-2 rounded-md font-medium`)}
+                      >
+                        {link.label}
+                      </button>
+                    ) : (
+                      <a
+                        key={link.label}
+                        href={link.href}
+                        className={tw(`text-gray-500 hover:text-gray-600 px-3 py-2 rounded-md font-medium`)}
+                      >
+                        {link.label}
+                      </a>
+                    )
+                  ))}
                 </div>
+
               </div>
             </div>
           <div className={tw(`hidden md:block`)}>
