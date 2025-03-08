@@ -113,10 +113,6 @@ export default function CHeader ({ categories, prices, specialties }: CHeaderPro
               </MenuItems>
             </Menu>
           </div>
-                  <div className={tw`mt-2 flex items-center text-sm gap-2 text-[#F67227]`}>
-                    <Calendar/>
-                    Mas recientes
-                  </div>
                 </div>
               </div>
               <div className={tw`mt-5 flex lg:mt-0 lg:ml-4`}>
