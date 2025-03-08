@@ -41,14 +41,14 @@ export default function CHeader ({ categories, prices, specialties }: CHeaderPro
             <div className={tw`lg:flex lg:items-center lg:justify-between mt-10 p-5`}>
               <div className={tw`min-w-0 flex-1`}>
                 <h3 className={tw`text-2xl/7 font-lilita text-[#587032] sm:truncate sm:text-3xl sm:tracking-tight mb-2`} style={{ fontFamily: '"Lilita One"' }}>
-                  Catalogo de Organos
+                  Catálogo de Órganos
                 </h3>
                 <div className={tw`mt-1 flex flex-col sm:mt-0 sm:flex-row sm:flex-wrap sm:space-x-6 text-[#F67227]`}>
                 <div className={tw`mt-2 flex items-center text-sm gap-2 text-[#F67227]`}>
             <BriefcaseMedical />
             <Menu as="div" className={tw`relative inline-block text-left`}>
               <MenuButton className={tw`inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 z-50`}>
-                Categoria
+                Categoría
                 <ChevronDownIcon className={tw`-mr-1 ml-2 h-5 w-5`} aria-hidden="true" />
               </MenuButton>
               <MenuItems className={tw`origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none`}>
