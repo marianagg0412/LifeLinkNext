@@ -1,25 +1,23 @@
 
 import {
-    BriefcaseIcon,
-    CalendarIcon,
-    CheckIcon,
     ChevronDownIcon,
-    CurrencyDollarIcon,
-    LinkIcon,
-    MapPinIcon,
-    PencilIcon,
   } from '@heroicons/react/20/solid'
   import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { tw } from 'twind'
-import { BriefcaseMedical, Calendar, ClipboardPlus, Currency, DollarSign, Home, PackagePlus } from 'lucide-react'
+import { BriefcaseMedical, Calendar, ClipboardPlus, DollarSign, Home, PackagePlus } from 'lucide-react'
 import { useEffect, useState } from 'react'
-import axios from 'axios'
 import { useRouter } from 'next/router'
   
-export default function CHeader () {
+interface CHeaderProps {
+  categories: string[];
+  prices: number[];
+  specialties: string[];
+}
 
-    const router = useRouter();
+export default function CHeader ({ categories, prices, specialties }: CHeaderProps) {
+
     const [isAdmin, setIsAdmin] = useState(false);
+    const router = useRouter();
 
     useEffect(() => {
       const checkAdminStatus = async () => {
@@ -46,19 +44,76 @@ export default function CHeader () {
                   Catalogo de Organos
                 </h3>
                 <div className={tw`mt-1 flex flex-col sm:mt-0 sm:flex-row sm:flex-wrap sm:space-x-6 text-[#F67227]`}>
-                  <div className={tw`mt-2 flex items-center text-sm text-gray-500 gap-2 text-[#F67227]`}>
-                    <BriefcaseMedical/>
-                    Categoria
-                  </div>
-                  <div className={tw`mt-2 flex items-center text-sm text-gray-500 gap-2 text-[#F67227]`}>
-                    <ClipboardPlus/>
-                    Especialidad
-                  </div>
-                  <div className={tw`mt-2 flex items-center text-sm text-gray-500 gap-2 text-[#F67227]`}>
-                    <DollarSign/>
-                    Precios
-                  </div>
-                  <div className={tw`mt-2 flex items-center text-sm text-gray-500 gap-2 text-[#F67227]`}>
+                <div className={tw`mt-2 flex items-center text-sm gap-2 text-[#F67227]`}>
+            <BriefcaseMedical />
+            <Menu as="div" className={tw`relative inline-block text-left`}>
+              <MenuButton className={tw`inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 z-50`}>
+                Categoria
+                <ChevronDownIcon className={tw`-mr-1 ml-2 h-5 w-5`} aria-hidden="true" />
+              </MenuButton>
+              <MenuItems className={tw`origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none`}>
+                {categories.map((category) => (
+                  <MenuItem key={category}>
+                    {({ active }) => (
+                      <a
+                        href="#"
+                        className={tw`${active ? 'bg-gray-100' : ''} block px-4 py-2 text-sm text-gray-700`}
+                      >
+                        {category}
+                      </a>
+                    )}
+                  </MenuItem>
+                ))}
+              </MenuItems>
+            </Menu>
+          </div>
+          <div className={tw`mt-2 flex items-center text-sm gap-2 text-[#F67227]`}>
+            <ClipboardPlus />
+            <Menu as="div" className={tw`relative inline-block text-left`}>
+              <MenuButton className={tw`inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50`}>
+                Especialidad
+                <ChevronDownIcon className={tw`-mr-1 ml-2 h-5 w-5`} aria-hidden="true" />
+              </MenuButton>
+              <MenuItems className={tw`origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50`}>
+                {specialties.map((specialty) => (
+                  <MenuItem key={specialty}>
+                    {({ active }) => (
+                      <a
+                        href="#"
+                        className={tw`${active ? 'bg-gray-100' : ''} block px-4 py-2 text-sm text-gray-700`}
+                      >
+                        {specialty}
+                      </a>
+                    )}
+                  </MenuItem>
+                ))}
+              </MenuItems>
+            </Menu>
+          </div>
+          <div className={tw`mt-2 flex items-center text-sm  gap-2 text-[#F67227]`}>
+            <DollarSign />
+            <Menu as="div" className={tw`relative inline-block text-left`}>
+              <MenuButton className={tw`inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50`}>
+                Precios
+                <ChevronDownIcon className={tw`-mr-1 ml-2 h-5 w-5`} aria-hidden="true" />
+              </MenuButton>
+              <MenuItems className={tw`origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50`}>
+                {prices.sort((a,b) => a - b).map((price) => (
+                  <MenuItem key={price}>
+                    {({ active }) => (
+                      <a
+                        href="#"
+                        className={tw`${active ? 'bg-gray-100' : ''} block px-4 py-2 text-sm text-gray-700`}
+                      >
+                        ${price}
+                      </a>
+                    )}
+                  </MenuItem>
+                ))}
+              </MenuItems>
+            </Menu>
+          </div>
+                  <div className={tw`mt-2 flex items-center text-sm gap-2 text-[#F67227]`}>
                     <Calendar/>
                     Mas recientes
                   </div>

@@ -1,41 +1,22 @@
 import React, { useEffect, useState } from 'react'
-import Link from 'next/link';
-import config from '../../tailwind.config';
-import { headers } from 'next/headers';
-import axios from 'axios';
 import ProductCard from '@/components/catalog/ProductCard';
 import { tw } from 'twind';
 import { useRouter } from 'next/router';
-import { CardWithForm } from '@/components/catalog/Cardcn';
-import { Carousel } from '@/components/ui/carousel';
-import { CarouselDemo } from '@/components/atomic-design/molecules/Carouselcn';
 import Header from '@/components/atomic-design/organisms/Header';
 import CHeader from '@/components/atomic-design/organisms/CatalogHeader';
-
-
-
-interface Product {
-  id: string;
-  name: string;
-  price: number;
-  description: string;
-  image: string;
-  category: string;
-  use: string;
-  specialty: string;
-  availability: number;
-}
-
-
+import { fetchProducts } from '@/api/products';
+import { Product } from '@/interfaces/products';
 
 
 const Catalogo = () => {
   const router = useRouter();
   const [products, setProducts] = useState<Product[]>([]);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [filters, setFilters] = useState({ category: '', use: '', specialty: '' });
+
 
   useEffect(() => {
-    const fetchProducts = async () => {
+    const fetchData = async () => {
       try {
         const token = localStorage.getItem('token');
 
@@ -43,44 +24,45 @@ const Catalogo = () => {
           console.error("No token found");
           return;
         }
-        
+
         const decodedToken = JSON.parse(atob(token.split(".")[1])); //decode payload
 
         setIsAdmin(decodedToken.rol.includes("admin")); //check if it has admin role
 
-        const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/product`, {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        })
-        setProducts(data);
-        
+        const productsData = await fetchProducts(token); // Use the fetchProducts function
+        setProducts(productsData);
       } catch (error) {
         console.error("Error fetching products:", error);
       }
     };
 
-    fetchProducts();
-  }, [])
+    fetchData();
+  }, []);
+
+  const filteredProducts = products.filter(product => {
+    return (
+      (!filters.category || product.category === filters.category) &&
+      (!filters.use || product.use === filters.use) &&
+      (!filters.specialty || product.specialty === filters.specialty)
+    );
+  });
+
+  const categories = Array.from(new Set(products.map(product => product.category)));
+  const prices = Array.from(new Set(products.map(product => product.price)));
+  const specialties = Array.from(new Set(products.map(product => product.specialty)));
+
   
 
   return (
     <div className={tw`container mx-auto `}>
       <Header/>
-      {/* ✅ Header with Buttons */}
-
-        <CHeader/>
-      
-
-      {/* ✅ Grid Layout for Product Cards */}
+      <CHeader categories={categories} prices={prices} specialties={specialties} />
       <div className={tw`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-10`}>
-        {products.length > 0 ? (
-          products.map((product) => <ProductCard key={product.id} product={product} />)
+        {filteredProducts.length > 0 ? (
+          filteredProducts.map((product) => <ProductCard key={product.id} product={product} />)
         ) : (
           <p className={tw`text-gray-500 text-center`}>No products available</p>
         )}
-        {/* <CardWithForm/>
-        <CarouselDemo/> */}
       </div>
     </div>
   );
