@@ -5,16 +5,9 @@ import { isAdminUser } from "@/utils/authUtils";
 import axios from "axios";
 import { GradientB } from "../atomic-design/molecules/atoms/buttons/GradientB";
 import { HomeIcon, Rocket, ShoppingBag, Trash } from "lucide-react";
+import { Product } from "@/interfaces/products";
 
-interface Product {
-  id: string;
-  name: string;
-  description: string;
-  price: number;
-  image: string;
-  category: string;
-  specialty: string;
-}
+
 
 
 
@@ -70,6 +63,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
       {/* Floating Image */}
       <div className={tw`absolute left-1/2 top-20 transform -translate-x-1/2 mt--5`}>
         {product.image ? (
+          // eslint-disable-next-line @next/next/no-img-element
           <img
             src={product.image}
             alt={product.name}

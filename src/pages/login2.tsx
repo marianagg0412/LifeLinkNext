@@ -37,7 +37,7 @@ const Login2 = () => {
     
           return true;
         });
-     }, []);
+     });
 
 
      return (

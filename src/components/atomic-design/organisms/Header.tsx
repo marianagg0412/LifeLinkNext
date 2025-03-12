@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 import { tw } from "twind";
 import Logo from "../molecules/atoms/Logo";
 import NButton from "../molecules/atoms/buttons/NormalB";
