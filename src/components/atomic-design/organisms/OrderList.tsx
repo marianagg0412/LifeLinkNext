@@ -9,12 +9,15 @@ interface OrderListProps {
 const OrderList = ({ orders }: OrderListProps) => {
   return (
     <div className={tw`mt-6 max-w-4xl w-full bg-white p-6 rounded-2xl shadow-md flex flex-col`}>
-      <h3 className={tw`mt-1 text-lg font-semibold`}>Mis pedidos</h3>
-      <div className={tw`flex flex-wrap gap-4`}>
-        {orders.map((order) => (
-          <OrderCard key={order.id} order={order} />
-        ))}
-      </div>
+      {orders.length === 0 ? (
+        <p className={tw`text-center text-gray-600 mt-4`}>No tiene órdenes</p>
+      ) : (
+        <div className={tw`flex flex-wrap gap-4`}>
+          {orders.map((order) => (
+            <OrderCard key={order.id} order={order} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
