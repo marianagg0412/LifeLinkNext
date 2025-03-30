@@ -6,6 +6,7 @@ import axios from 'axios';
 import { tw } from 'twind';
 import Header from '@/components/atomic-design/organisms/Header';
 import { User } from '@/interfaces/user';
+import OrderCard from '@/components/atomic-design/molecules/OrderCard';
 
 
 
@@ -90,9 +91,10 @@ const UserProfile = () => {
       <div className={tw`mt-6 max-w-4xl w-full bg-white p-6 rounded-2xl shadow-md flex flex-col`}>
         <h3 className={tw`mt-1 text-lg font-semibold`}>Мis pedidos</h3>
         <div className={tw`flex flex-row justify-evenly h-full`}>
-          <h1>hola</h1>
-          <h1>hola</h1>
-          <h1>hola</h1>
+          <OrderCard title='pedido 1' date='12/03/25'/>
+          <OrderCard title='pedido 2' date='12/03/25'/>
+          <OrderCard title='pedido 3' date='12/03/25'/>
+          
           
 
         </div>
