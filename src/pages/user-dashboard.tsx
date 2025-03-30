@@ -6,13 +6,15 @@ import axios from 'axios';
 import { tw } from 'twind';
 import Header from '@/components/atomic-design/organisms/Header';
 import { User } from '@/interfaces/user';
-import OrderCard from '@/components/atomic-design/molecules/OrderCard';
+import OrderList from '@/components/atomic-design/organisms/OrderList';
+import { fetchOrdersOfUser } from '@/api/orders';
 
 
 
 const UserProfile = () => {
   const router = useRouter();
   const [user, setUser] = useState<User | null>(null);
+  const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -28,8 +30,12 @@ const UserProfile = () => {
           headers: { Authorization: `Bearer ${token}` },
         };
 
-        const response = await axios.get('http://localhost:3000/auth/profile', config);
+        const response = await axios.get('http://localhost:3000/auth/profile', config); //No dejes esto hardcoded
         setUser(response.data.user);
+
+        const UserOrders = await fetchOrdersOfUser(token);
+        console.log('User Orders:', UserOrders);
+        setOrders(UserOrders);
       } catch (error) {
         console.error('Error fetching profile data:', error);
         router.push('/login');
@@ -87,14 +93,11 @@ const UserProfile = () => {
         </div>
       </div>
 
-      {/* Courses Section */}
+      {/* Order Section */}
       <div className={tw`mt-6 max-w-4xl w-full bg-white p-6 rounded-2xl shadow-md flex flex-col`}>
         <h3 className={tw`mt-1 text-lg font-semibold`}>Мis pedidos</h3>
         <div className={tw`flex flex-row justify-evenly h-full`}>
-          <OrderCard title='pedido 1' date='12/03/25'/>
-          <OrderCard title='pedido 2' date='12/03/25'/>
-          <OrderCard title='pedido 3' date='12/03/25'/>
-          
+          <OrderList orders={orders} />
           
 
         </div>
