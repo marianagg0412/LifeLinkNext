@@ -3,9 +3,9 @@ import { Order } from "../../../interfaces/orders";
 
 const OrderCard = ({ order }: { order: Order }) => {
   return (
-<div className={tw`w-64 h-56 bg-white rounded-2xl p-6 shadow-lg flex flex-col justify-between`}>      {/* Order Header */}
+<div className={tw`w-64 h-56 bg-[#FCF7F3] rounded-2xl p-6 shadow-lg flex flex-col justify-between`}>      {/* Order Header */}
       <div className={tw`flex justify-between items-center`}>
-        <h3 className={tw`text-lg font-bold text-gray-800`}>Pedido #{order.id.slice(0, 8)}</h3>
+        <h3 className={tw`text-lg font-bold text-[#F72967]`}>Pedido #{order.id.slice(0, 8)}</h3>
         <span
           className={tw`px-2 py-1 text-xs font-semibold rounded ${
             order.status === "COMPLETED"
@@ -21,20 +21,20 @@ const OrderCard = ({ order }: { order: Order }) => {
 
       {/* Order Details */}
       <div className={tw`mt-4`}>
-      <p className={tw`text-sm text-gray-600`}>
+      <p className={tw`text-sm text-[#46C6D7]`}>
           <span className={tw`font-semibold`}>Total:</span> ${order.totalAmount}
         </p>
-        <p className={tw`text-sm text-gray-600`}>
+        <p className={tw`text-sm text-[#46C6D7]`}>
           <span className={tw`font-semibold`}>Productos:</span> {order.productIds.length}
         </p>
       </div>
 
       {/* Order Footer */}
       <div className={tw`mt-4 flex justify-between items-center`}>
-        <p className={tw`text-xs text-gray-500`}>
+        <p className={tw`text-xs text-[#bcacdd]`}>
           Creado: {new Date(order.createdAt).toLocaleDateString()}
         </p>
-        <p className={tw`text-xs text-gray-500`}>
+        <p className={tw`text-xs text-[#bcacdd]`}>
           Actualizado: {new Date(order.updatedAt).toLocaleDateString()}
         </p>
       </div>
