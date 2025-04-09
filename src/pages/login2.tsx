@@ -11,7 +11,7 @@ const handleLogin = async (userData: { email: string; password: string; }, route
     try {
         const response = await axios.post('http://localhost:3000/auth/login', userData);
         localStorage.setItem('token', response.data.token);
-        await router.push('/dashboard');
+        await router.push('/user-dashboard');
         alert('Se ha iniciado sesión correctamente');
     } catch (error) {
         console.error('Login error:', error);
