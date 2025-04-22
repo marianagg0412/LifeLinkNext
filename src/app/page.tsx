@@ -6,7 +6,7 @@ export default function HomePage() {
             <div className='card'>
                 <div className='headers'>
                     <h1>Bienvenido a LifeLink</h1>
-                    <Link href="/login2">
+                    <Link href="/login">
                         <button className='btn1'>Login</button>
                     </Link>
                     <Link href="/register">

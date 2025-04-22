@@ -1,24 +1,22 @@
-import { useState} from 'react';
-import { useRouter} from 'next/router';
-import axios from 'axios';
-import { PhoneInput } from 'react-international-phone';
-import 'react-international-phone/style.css';
-import Modal from '@/components/Modal';
-import CustomButton from '@/components/CustomButton';
-import { tw } from 'twind';
-import '../styles/LoginForm.css';
-import MyButton from "@/components/RefreshButton";
+import Logo from "@/components/atomic-design/molecules/atoms/Logo";
+import Modal from "@/components/Modal";
+import axios from "axios";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import React, { useState } from "react";
+import { PhoneInput } from "react-international-phone";
+import { tw } from "twind";
 
-const Register = () => {
+const Register2 = () => {
   const router = useRouter();
-  const [name, setName] = useState('');
-  const [lastname, setLastname] = useState('');
-  const [docnum, setDocnum] = useState('');
-  const [phone, setPhone] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [bloodType, setBloodType] = useState('');
-  const [docnum_type, setdocnum_type] = useState('');
+  const [name, setName] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [docnum, setDocnum] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [bloodType, setBloodType] = useState("");
+  const [docnum_type, setdocnum_type] = useState("");
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -26,12 +24,12 @@ const Register = () => {
   const closeModal = () => setIsModalOpen(false);
 
   const onAcceptTerms = () => {
-    console.log('Terms accepted');
+    console.log("Terms accepted");
     setTermsAccepted(true);
     closeModal();
   };
 
-  const handleInputChange = (event: { target: { value: any; }; }) => {
+  const handleInputChange = (event: { target: { value: any } }) => {
     const value = event.target.value;
     // Allow for an empty string or a string that starts with a digit
     // Test the cleaned value against the updated regex
@@ -45,10 +43,21 @@ const Register = () => {
   };
   const allowedOptions = ["CC", "CE", "PA"];
 
-  const handleRegistration = async (event: { email: string; password: string; name: string; lastname: string; docnum_type: string; docnum: string; phone: string; bloodType: string; }) => {
+  const handleRegistration = async (event: {
+    email: string;
+    password: string;
+    name: string;
+    lastname: string;
+    docnum_type: string;
+    docnum: string;
+    phone: string;
+    bloodType: string;
+  }) => {
     //event.preventDefault(); // Prevent form submission
     if (!termsAccepted) {
-      alert('Por favor, acepta los términos y condiciones antes de registrarte.');
+      alert(
+        "Por favor, acepta los términos y condiciones antes de registrarte."
+      );
       return;
     }
     const userData = {
@@ -59,150 +68,292 @@ const Register = () => {
       docnum_type,
       docnum,
       phone,
-      bloodType
-    }
+      bloodType,
+    };
     try {
-      const response = await axios.post('http://localhost:3000/auth/register', userData);
-      alert('El usuario se creó exitosamente');
-      localStorage.setItem('token', response.data.token);
-      router.push('/dashboard');
+      const response = await axios.post(
+        "http://localhost:3000/auth/register",
+        userData
+      );
+      alert("El usuario se creó exitosamente");
+      localStorage.setItem("token", response.data.token);
+      router.push("/user-dashboard");
     } catch (error: any) {
       if (error.response && error.response.status === 400) {
         alert(error.response.data.message);
       } else {
-        alert('Se produjo un error inesperado al registrar el usuario');
+        alert("Se produjo un error inesperado al registrar el usuario");
       }
     }
   };
-
-  
   return (
-    <div className={tw(`min-h-screen flex items-center justify-center bg-gray-100`)}>
-      <div className={tw(`max-w-md w-full bg-white shadow-md rounded-lg p-8`)}>
-        <h1 className={tw(`text-3xl font-bold text-center mb-6`)}>Registro de usuario</h1>
-        <form onSubmit={(event) => {
-          event.preventDefault();
-          const userData = {
-            email,
-            password,
-            name,
-            lastname,
-            docnum_type,
-            docnum,
-            phone,
-            bloodType
-          };
-          handleRegistration(userData);
-        }}>
-          <div className={tw(`mb-4`)}>
-            <label htmlFor="name" className={tw(`block text-gray-700 mb-2`)}>Nombre</label>
-            <input
-              type="text"
-              name="name"
-              value={name}
-              placeholder="Ingrese su nombre"
-              onChange={(event) => setName(event.target.value)}
-              className={tw(`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500`)}
-            />
-          </div>
-          <div className={tw(`mb-4`)}>
-            <label htmlFor="lastname" className={tw(`block text-gray-700 mb-2`)}>Apellido</label>
-            <input
-              type="text"
-              name="lastname"
-              value={lastname}
-              placeholder="Ingrese su apellido"
-              onChange={(event) => setLastname(event.target.value)}
-              className={tw(`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500`)}
-            />
-          </div>
-          <div className={tw(`mb-4`)}>
-            <label htmlFor="docnum" className={tw(`block text-gray-700 mb-2`)}>Número de documento</label>
-            <div className={tw(`flex flex-col items-start space-y-2`)}>
-              <select
-                name="docType"
-                value={docnum_type}
-                onChange={(e) => {
-                  setdocnum_type(e.target.value);
-                  if (!allowedOptions.includes(e.target.value)) {
-                    alert('Por favor, seleccione una opción válida.');
-                  }
-                }}
-                className={tw(`p-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500`)}
+    <>
+     {/* <Modal isOpen={isModalOpen} onClose={closeModal} onAcceptTerms={onAcceptTerms} /> */}
+      <section className={tw(`bg-pink-50 dark:bg-gray-900`)}>
+        <div
+          className={tw(
+            `flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0`
+          )}
+        >
+          <Logo />
+          <div
+            className={tw(
+              `w-full bg-gray-50 rounded-lg shadow dark:border md:mt-0 sm:max-w-xl xl:p-0 dark:bg-gray-800 dark:border-gray-700`
+            )}
+          >
+            <div className={tw(`p-4 space-y-4 md:space-y-4 sm:p-6`)}>
+              <h3
+                className={tw(
+                  `font-bold leading-tight tracking-tight text-red-700 md:text-xl dark:text-white`
+                )}
               >
-                <option value="">Seleccione el tipo de documento</option>
-                <option value="CC">CC</option>
-                <option value="CE">CE</option>
-                <option value="PA">Pasaporte</option>
-              </select>
-              <input
-                type="text"
-                name="docnum"
-                placeholder="Ingrese su número de documento"
-                onChange={handleInputChange}
-                className={tw(`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500`)}
-                disabled={docnum_type === ""}
-              />
+                Crear una cuenta
+              </h3>
+              <form
+                className={tw(`space-y-6`)}
+                action="#"
+                onSubmit={(event) => {
+                  event.preventDefault();
+                  const userData = {
+                    email,
+                    password,
+                    name,
+                    lastname,
+                    docnum_type,
+                    docnum,
+                    phone,
+                    bloodType,
+                  };
+                  handleRegistration(userData);
+                }}
+              >
+                <div className={tw(`grid grid-cols-1 md:grid-cols-2 gap-4`)}>
+                  <div>
+                    <label
+                      htmlFor="name"
+                      className={tw(
+                        `block mb-2 text-sm font-medium text-red-400 dark:text-white`
+                      )}
+                    >
+                      Nombre
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      value={name}
+                      placeholder="Ingrese su nombre"
+                      onChange={(event) => setName(event.target.value)}
+                      className={tw(
+                        `bg-gray-50 border border-gray-300 gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`
+                      )}
+                    />
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="lastname"
+                      className={tw(
+                        `block mb-2 text-sm font-medium text-red-400 dark:text-white`
+                      )}
+                    >
+                      Apellido
+                    </label>
+                    <input
+                      type="text"
+                      name="lastname"
+                      value={lastname}
+                      placeholder="Ingrese su apellido"
+                      onChange={(event) => setLastname(event.target.value)}
+                      className={tw(
+                        `bg-gray-50 border border-gray-300 gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`
+                      )}
+                    />
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="docnum"
+                      className={tw(
+                        `block mb-2 text-sm font-medium text-red-400 dark:text-white`
+                      )}
+                    >
+                      Número de documento
+                    </label>
+                    <div className={tw(`flex flex-col items-start space-y-2`)}>
+                      <select
+                        name="docType"
+                        value={docnum_type}
+                        onChange={(e) => {
+                          setdocnum_type(e.target.value);
+                          if (!allowedOptions.includes(e.target.value)) {
+                            alert("Por favor, seleccione una opción válida.");
+                          }
+                        }}
+                        className={tw(
+                          `bg-gray-50 border border-gray-300 text-red-400 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`
+                        )}
+                      >
+                        <option value="">
+                          Seleccione el tipo de documento
+                        </option>
+                        <option value="CC">CC</option>
+                        <option value="CE">CE</option>
+                        <option value="PA">Pasaporte</option>
+                      </select>
+                      <input
+                        type="text"
+                        name="docnum"
+                        placeholder="Ingrese su número de documento"
+                        onChange={handleInputChange}
+                        className={tw(
+                          `bg-gray-50 border border-gray-300 gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`
+                        )}
+                        disabled={docnum_type === ""}
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="phone"
+                      className={tw(
+                        `block mb-2 text-sm font-medium text-red-400 dark:text-white`
+                      )}
+                    >
+                      Teléfono
+                    </label>
+                    <PhoneInput
+                      defaultCountry="co"
+                      value={phone}
+                      onChange={setPhone}
+                      className={tw(
+                        `bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`
+                      )}
+                    />
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="bloodType"
+                      className={tw(
+                        `block mb-2 text-sm font-medium text-red-400 dark:text-white`
+                      )}
+                    >
+                      Tipo de sangre
+                    </label>
+                    <input
+                      type="text"
+                      name="bloodType"
+                      value={bloodType}
+                      placeholder="Ingrese su tipo de sangre"
+                      onChange={(event) => setBloodType(event.target.value)}
+                      className={tw(
+                        `bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`
+                      )}
+                    />
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="email"
+                      className={tw(
+                        `block mb-2 text-sm font-medium text-red-400 dark:text-white`
+                      )}
+                    >
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={email}
+                      placeholder="hey@mail.com"
+                      onChange={(event) => setEmail(event.target.value)}
+                      className={tw(
+                        `bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`
+                      )}
+                    />
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="password"
+                      className={tw(
+                        `block mb-2 text-sm font-medium text-red-400 dark:text-white`
+                      )}
+                    >
+                      Contraseña
+                    </label>
+                    <input
+                      type="password"
+                      name="password"
+                      value={password}
+                      placeholder="Introduce tu contraseña"
+                      onChange={(event) => setPassword(event.target.value)}
+                      className={tw(
+                        `bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`
+                      )}
+                    />
+                  </div>
+                  <div className={tw(`flex items-start`)}>
+                    <div className={tw(`flex items-center h-5`)}>
+                      <input
+                        id="terms"
+                        aria-describedby="terms"
+                        type="checkbox"
+                        onClick={() => setTermsAccepted(!termsAccepted)}
+                        className={tw(
+                          `w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800`
+                        )}
+                        
+                      />
+                     
+                    </div>
+                    <div className={tw(`ml-3 text-sm`)}>
+                      <label
+                        htmlFor="terms"
+                        className={tw(
+                          `font-light text-gray-500 dark:text-gray-300`
+                        )}
+                      >
+                        Acepto los{" "}
+                          <button
+                            type="button"
+                            onClick={openModal}
+                            className={tw(`font-medium text-primary-600 hover:underline dark:text-primary-500`)}
+                          >
+                            términos y condiciones
+                          </button>
+                        
+                      </label>
+                      
+                    </div>
+                  </div>
+                </div>
+                <button
+                  type="submit"
+                  className={tw(
+                    `w-full text-white bg-red-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800`
+                  )}
+                >
+                  Crear mi cuenta
+                </button>
+                <p
+                  className={tw(
+                    `text-sm font-light text-gray-500 dark:text-gray-400`
+                  )}
+                >
+                  ¿Ya tienes una cuenta?{" "}
+                  <Link
+                    href="/login"
+                    className={tw(
+                      `font-medium text-primary-600 hover:underline dark:text-primary-500`
+                    )}
+                  >
+                    Iniciar Sesión
+                  </Link>
+                </p>
+              </form>
             </div>
           </div>
-          <div className={tw(`mb-4`)}>
-            <label htmlFor="phone" className={tw(`block text-gray-700 mb-2`)}>Teléfono</label>
-            <PhoneInput
-              defaultCountry="co"
-              value={phone}
-              onChange={setPhone}
-              className={tw(`w-full p-3 flex justify-center items-center focus:outline-none focus:ring-2 focus:ring-blue-500`)}
-            />
-          </div>
-          <div className={tw(`mb-4`)}>
-            <label htmlFor="bloodType" className={tw(`block text-gray-700 mb-2`)}>Tipo de sangre</label>
-            <input
-              type="text"
-              name="bloodType"
-              value={bloodType}
-              placeholder="Ingrese su tipo de sangre"
-              onChange={(event) => setBloodType(event.target.value)}
-              className={tw(`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500`)}
-            />
-          </div>
-          <div className={tw(`mb-4`)}>
-            <label htmlFor="email" className={tw(`block text-gray-700 mb-2`)}>Email</label>
-            <input
-              type="email"
-              name="email"
-              value={email}
-              placeholder="hey@mail.com"
-              onChange={(event) => setEmail(event.target.value)}
-              className={tw(`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500`)}
-            />
-          </div>
-          <div className={tw(`mb-6`)}>
-            <label htmlFor="password" className={tw(`block text-gray-700 mb-2`)}>Contraseña</label>
-            <input
-              type="password"
-              name="password"
-              value={password}
-              placeholder="Introduce tu contraseña"
-              onChange={(event) => setPassword(event.target.value)}
-              className={tw(`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500`)}
-            />
-          </div>
-          <button className={tw(`w-full bg-[#FF5A5A] text-white p-3 rounded-lg font-semibold hover:bg-[#FF3A3A] transition duration-200`)}>Regístrate</button>
-        </form>
-        <div>
-      <CustomButton
-        className={tw(`w-full bg-gray-500 text-white p-3 rounded-lg font-semibold mt-4 hover:bg-gray-600 transition duration-200`)}
-        onClick={openModal}
-        onAcceptTerms={onAcceptTerms}
-      >
-        Abrir los Términos y Condiciones
-      </CustomButton>
-      <Modal isOpen={isModalOpen} onClose={closeModal} onAcceptTerms={onAcceptTerms} />
-    </div>
-        <MyButton/>
-      </div>
-    </div>
+        </div>
+      </section>
+     
+    </>
   );
-}
+};
 
-export default Register
+export default Register2;

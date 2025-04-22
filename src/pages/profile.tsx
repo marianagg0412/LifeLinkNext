@@ -86,7 +86,7 @@ const UserProfile = () => {
             setUser(response.data.user);
             setEditMode(false);
             alert('El perfil se actualizó correctamente');
-            router.push('/dashboard');
+            router.push('/user-dashboard');
         } catch (error) {
             console.error('Error updating profile:', error);
             alert(error);
@@ -182,7 +182,7 @@ const UserProfile = () => {
                 </button>
                 <button
                   className={tw(`w-full bg-gray-500 text-white p-3 rounded-lg font-semibold mt-4 hover:bg-gray-600 transition duration-200`)}
-                  onClick={() => router.push('/dashboard')}
+                  onClick={() => router.push('/user-dashboard')}
                 >
                   Regresar al dashboard
                 </button>
