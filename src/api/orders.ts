@@ -1,6 +1,6 @@
 import { Order } from '@/interfaces/orders';
 import axios from 'axios';
-import { jwtDecode } from "jwt-decode"; // Correct named import
+import { jwtDecode } from "jwt-decode";
 
 interface TokenPayload {
   id: string;
@@ -38,7 +38,6 @@ export const fetchUserOrders = async () => {
 
   try {
     const orders: Order[] = await fetchOrdersOfUser(token);
-    console.log('User Orders:', orders);
   } catch (error) {
     console.error('Failed to fetch user orders:', error);
   }

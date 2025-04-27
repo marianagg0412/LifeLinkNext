@@ -13,8 +13,6 @@ export const getUserRole = async () :Promise<string> => {
             }
         });
 
-        console.log("🟢 User role:", res.data.user.roles);
-
         return res.data.user.roles || '';
     } catch (error) {
         console.error("Error fetching user role:", error);

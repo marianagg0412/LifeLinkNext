@@ -1,19 +1,26 @@
-import Link from 'next/link';
-import './styles.css';
-export default function HomePage() {
-    return (
-        <div className='container'>
-            <div className='card'>
-                <div className='headers'>
-                    <h1>Bienvenido a LifeLink</h1>
-                    <Link href="/login">
-                        <button className='btn1'>Login</button>
-                    </Link>
-                    <Link href="/register">
-                        <button className='btn1'>Register</button>
-                    </Link>
-                </div>
-            </div>
-        </div>
-    );
+
+import Page from '@/app/components/homepage/page';
+import Header from '@/app/components/homepage/header';
+import ListSection from '@/app/components/homepage/list-section';
+import FeatureSection from '@/app/components/homepage/feature-section';
+import CasesSection from '@/app/components/homepage/cases-section';
+import SocialProof from '@/app/components/homepage/social-proof';
+import PricingTable from '@/app/components/homepage/pricing-table';
+import Footer from '@/app/components/homepage/footer';
+
+export default function Home() {
+  return (
+    <Page>
+      <Header />
+      <main>
+        {/*<VideoSection />*/}
+        <ListSection />
+        <FeatureSection />
+        <CasesSection />
+        <SocialProof />
+        <PricingTable />
+      </main>
+      <Footer />
+    </Page>
+  );
 }

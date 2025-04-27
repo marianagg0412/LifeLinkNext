@@ -34,3 +34,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# docker
+.dockerignore
+Dockerfile
+README.Docker.md
+compose.yaml

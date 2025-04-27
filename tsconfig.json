@@ -11,7 +11,7 @@
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "node", // Change this to a valid value
+    "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
@@ -25,7 +25,6 @@
       "@/*": [
         "./src/*"
       ],
-      "twind.config": ["./src/twind.config.js"]
     },
     "forceConsistentCasingInFileNames": true
   },
@@ -35,7 +34,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/types/custom.d.ts"
-  ],
+, "tailwind.config.js"  ],
   "exclude": [
     "node_modules"
   ]
