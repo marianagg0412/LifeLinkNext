@@ -12,6 +12,7 @@ import { User as UserIcon, Mail, Phone, Edit2, CheckCircle, XCircle, UserCheck, 
 import UserProfileCard from '../components/atomic-design/molecules/UserProfileCard';
 import MedicalInfoCard from '../components/atomic-design/molecules/MedicalInfoCard';
 import MedicalRecordCard from '../components/atomic-design/molecules/MedicalRecordCard';
+import { toast } from 'sonner';
 
 const UserProfile = () => {
   const router = useRouter();
@@ -44,7 +45,7 @@ const UserProfile = () => {
         setLoading(false);
       } catch (error) {
         console.error('Error fetching profile data:', error);
-        alert('Error fetching profile data');
+        toast('Error en la adquisición de datos del perfil');
         router.push('/login');
       }
     }, [router])
@@ -62,10 +63,10 @@ const UserProfile = () => {
       await fetchProfile(); // Refresh the profile data after update
       setEditMode(false);
       alert('El perfil se actualizó correctamente');
-
+      router.push('/user-dashboard');
     } catch (error) {
       console.error('Error updating profile:', error);
-      alert(error);
+      toast("Error al actualizar el perfil");
     }
   };
 

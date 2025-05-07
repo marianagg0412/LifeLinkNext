@@ -3,6 +3,7 @@
 import axios from "axios";
 import { useRouter } from "next/navigation"
 import React, { useState } from "react";
+import { toast } from "sonner";
 
 const CreateProduct = () => {
 
@@ -26,7 +27,7 @@ const CreateProduct = () => {
 
 
         if (!formData.use || !formData.specialty) {
-            alert("Por favor, complete todos los campos");
+            toast("Por favor, complete todos los campos");
             return;
         }
 
@@ -44,11 +45,11 @@ const CreateProduct = () => {
                 { headers: { Authorization: `Bearer ${token}` } }
             );
 
-            alert('Órgano creado correctamente');
+            toast('Órgano creado correctamente');
             router.push('/catalogo');
         } catch (error:any) {
             console.error("Error al agregar organo:", error);
-            alert(`Error: ${error.response?.data?.message || "Hubo un error al agregar el órgano"}`);
+            toast(`Error: ${error.response?.data?.message || "Hubo un error al agregar el órgano"}`);
         }
     };
 

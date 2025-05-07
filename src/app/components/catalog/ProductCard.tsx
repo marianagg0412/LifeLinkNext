@@ -7,6 +7,7 @@ import axios from "axios";
 import { GradientB } from "../atomic-design/atoms/buttons/GradientB";
 import { HomeIcon, Rocket, ShoppingBag, Trash } from "lucide-react";
 import { Product } from "@/interfaces/products";
+import { toast } from "sonner";
 
 const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
 
@@ -36,10 +37,10 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
       }
       await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/product/${product.id}/deactivate`, {}, config);
 
-      alert(`${product.name} has been deactivated`);
+      toast(`${product.name} has been deactivated`);
     } catch (error: any) {
       console.error("❌ Error deactivating product:", error.response?.data || error);
-      alert(`Failed to deactivate product: ${JSON.stringify(error.response?.data)}`);
+      toast(`Falló la desactivación del producto`);
     }
   };
 

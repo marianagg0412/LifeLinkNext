@@ -4,6 +4,7 @@ import { isAdminUser } from '@/utils/authUtils';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
+import { toast } from 'sonner';
 
 const UpdateProduct = () => {
 
@@ -49,7 +50,7 @@ const UpdateProduct = () => {
               });
         } catch (error) {
             console.error("Error fetching product:", error);
-            alert("Error fetching product details.");
+            toast("Error fetching product details.");
         }
     };
 
@@ -79,11 +80,11 @@ const UpdateProduct = () => {
         headers: { Authorization: `Bearer ${token}` },
       });
 
-      alert ("Product updated successfully");
+      toast ("Producto actualizado correctamente");
       router.push("/catalogo");
     } catch (error:any) {
         console.error("Error updating product:", error.response?.data || error);
-        alert(`Failed to update the product: ${JSON.stringify(error.response?.data)}`);
+        toast(`Fallo al actualizar el producto`);
     }
   };
 

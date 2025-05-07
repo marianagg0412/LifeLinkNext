@@ -124,7 +124,10 @@ const UserProfile = () => {
                   onClick={() => router.push("/catalogo")}>Explorar catálogo</button>
           <button 
             className={`mt-4 bg-red-600 text-white px-4 py-2 rounded-xl`}
-            onClick={() => router.push("/")}
+            onClick={() => {
+              localStorage.removeItem('token');
+              router.push("/")
+            }}
           > Cerrar Sesión </button>
 
         </div>

@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { toast } from 'sonner';
 
 const Dashboard = () => {
   const router = useRouter();
@@ -28,7 +29,7 @@ const Dashboard = () => {
                 () => {
                   localStorage.clear();
                   sessionStorage.clear();
-                  alert('Sesión cerrada');
+                  toast('Sesión cerrada');
                   router.push('/')
                 }}
               className={(`w-full bg-red-500 text-white py-2 px-4 rounded-lg mb-2 hover:bg-red-600 transition duration-200`)}

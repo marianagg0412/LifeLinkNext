@@ -7,6 +7,7 @@ import Modal from '@/app/components/Modal';
 import CustomButton from '@/app/components/CustomButton';
 import '../styles/LoginForm.css';
 import MyButton from "@/app/components/RefreshButton";
+import { toast } from 'sonner';
 
 const Register = () => {
   const router = useRouter();
@@ -36,7 +37,7 @@ const Register = () => {
     if (/^[0-9]*$/.test(value)) {
       setDocnum(value);
     } else {
-      alert("Por favor, ingrese solo números para CC o CE.");
+      toast("Por favor, ingrese solo números para CC o CE.");
       // Optionally, reset the input to the last valid value
       setDocnum(docnum); // Assuming docnum is the state holding the current input value
     }
@@ -46,7 +47,7 @@ const Register = () => {
   const handleRegistration = async (event: { email: string; password: string; name: string; lastname: string; docnum_type: string; docnum: string; phone: string; bloodType: string; }) => {
     //event.preventDefault(); // Prevent form submission
     if (!termsAccepted) {
-      alert('Por favor, acepta los términos y condiciones antes de registrarte.');
+      toast('Por favor, acepta los términos y condiciones antes de registrarte.');
       return;
     }
     const userData = {
@@ -61,14 +62,14 @@ const Register = () => {
     }
     try {
       const response = await axios.post('http://localhost:3000/auth/register', userData);
-      alert('El usuario se creó exitosamente');
+      toast('El usuario se creó exitosamente');
       localStorage.setItem('token', response.data.token);
       router.push('/dashboard');
     } catch (error: any) {
       if (error.response && error.response.status === 400) {
-        alert(error.response.data.message);
+        toast(error.response.data.message);
       } else {
-        alert('Se produjo un error inesperado al registrar el usuario');
+        toast('Se produjo un error inesperado al registrar el usuario');
       }
     }
   };
@@ -123,7 +124,7 @@ const Register = () => {
                 onChange={(e) => {
                   setdocnum_type(e.target.value);
                   if (!allowedOptions.includes(e.target.value)) {
-                    alert('Por favor, seleccione una opción válida.');
+                    toast('Por favor, seleccione una opción válida.');
                   }
                 }}
                 className={(`p-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500`)}
