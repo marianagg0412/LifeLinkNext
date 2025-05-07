@@ -3,16 +3,15 @@
 import { useState, useEffect, use, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
-import { PhoneInput } from 'react-international-phone';
 import 'react-international-phone/style.css';
 import '../styles/ProfileForm.css';
 import Header from '../components/atomic-design/organisms/Header';
 import { User } from '@/interfaces/user';
-import { User as UserIcon, Mail, Phone, Edit2, CheckCircle, XCircle, UserCheck, UserPlus } from 'lucide-react';
 import UserProfileCard from '../components/atomic-design/molecules/UserProfileCard';
 import MedicalInfoCard from '../components/atomic-design/molecules/MedicalInfoCard';
 import MedicalRecordCard from '../components/atomic-design/molecules/MedicalRecordCard';
 import { toast } from 'sonner';
+import { fetchUserOrders } from '@/api/orders';
 
 const UserProfile = () => {
   const router = useRouter();
@@ -52,6 +51,7 @@ const UserProfile = () => {
 
     useEffect(() => {
       fetchProfile();
+      fetchUserOrders();
     }, [fetchProfile]);
 
   const handleUpdate = async (updatedFields: Partial<User>) => {

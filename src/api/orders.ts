@@ -11,11 +11,9 @@ interface TokenPayload {
 
 export const fetchOrdersOfUser = async (token: string) => {
   try {
-    // Decode the token to extract the user ID
     const decoded = jwtDecode(token) as TokenPayload;
     const userId = decoded.id;
 
-    // Fetch orders for the user
     const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/orders/user/${userId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -42,5 +40,3 @@ export const fetchUserOrders = async () => {
     console.error('Failed to fetch user orders:', error);
   }
 };
-
-fetchUserOrders();
