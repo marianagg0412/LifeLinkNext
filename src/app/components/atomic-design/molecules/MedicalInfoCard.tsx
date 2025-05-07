@@ -33,68 +33,69 @@ const MedicalInfoCard = ({ user, onUpdate }: Props) => {
     };
 
     return (
-        <div className="bg-white/90 shadow-2xl rounded-3xl p-8 w-full max-w-sm border border-pink-100 animate-fade-in">
-            <h2 className="text-2xl font-extrabold text-gray-800 mb-4">Informacion medica</h2>
+        <div className="bg-gradient-to-br from-pink-50 to-blue-50 shadow-xl rounded-3xl p-8 w-full max-w-sm border border-pink-200 animate-fade-in transition-transform hover:scale-105">
+            <h2 className="text-2xl font-extrabold text-gray-800 mb-6 flex items-center gap-2">
+                🩺 Información médica
+            </h2>
+    
             {editMode ? (
                 <form className="space-y-4" onSubmit={handleSubmit}>
-                    <div>
-                        <label className="block text-gray-700 text-sm font-semibold">Tipo de sangre</label>
-                        <input 
-                            type="text" 
-                            value={bloodType}
-                            onChange={(e) => setBloodType(e.target.value)}
-                            className="w-full p-2 rounded border focus:outline-none "
-                        />
-                    </div>
-                    <div>
-                        <label className="block text-gray-700 text-sm font-semibold">Condiciones medicas</label>
-                        <input 
-                            type="text" 
-                            value={medicalConditions}
-                            onChange={(e) => setMedicalConditions(e.target.value)}
-                            className="w-full p-2 rounded border focus:outline-none"
-                        />
-                    </div>
-                    <div>
-                        <label className="block text-gray-700 text-sm font-semibold">Alergias</label>
-                        <input 
-                            type="text" 
-                            value={allergies}
-                            onChange={(e) => setAllergies(e.target.value)}
-                            className="w-full p-2 rounded border focus:outline-none"
-                        />
-                    </div>
-                    <div>
-                        <label className="block text-gray-700 text-sm font-semibold">Medicacion</label>
-                        <input 
-                            type="text" 
-                            value={medications}
-                            onChange={(e) => setMedications(e.target.value)}
-                            className="w-full p-2 rounded border focus:outline-none"
-                        />
-                    </div>
-                    <div className="flex gap-3 mt-4">
-                        <button type="submit" className="bg-pink-500 text-white py-2 px-4 rounded flex items-center gap-2">
+                    {[ 
+                        { label: 'Tipo de sangre', value: bloodType, setter: setBloodType, placeholder: 'Ej. A+' },
+                        { label: 'Condiciones médicas', value: medicalConditions, setter: setMedicalConditions, placeholder: 'Ej. Diabetes' },
+                        { label: 'Alergias', value: allergies, setter: setAllergies, placeholder: 'Ej. Polen' },
+                        { label: 'Medicamentos', value: medications, setter: setMedications, placeholder: 'Ej. Insulina' }
+                    ].map(({ label, value, setter, placeholder }) => (
+                        <div key={label}>
+                            <label className="block text-sm font-semibold text-gray-700 mb-1">{label}</label>
+                            <input
+                                type="text"
+                                value={value}
+                                onChange={(e) => setter(e.target.value)}
+                                placeholder={placeholder}
+                                className="w-full p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-400 transition"
+                            />
+                        </div>
+                    ))}
+    
+                    <div className="flex gap-3 mt-6">
+                        <button
+                            type="submit"
+                            className="flex-1 bg-gradient-to-r from-pink-500 to-pink-400 text-white py-2 px-4 rounded-lg font-semibold shadow hover:from-pink-600 hover:to-pink-500 transition flex items-center justify-center gap-2"
+                        >
                             <CheckCircle size={20} /> Guardar
                         </button>
                         <button
                             type="button"
                             onClick={() => setEditMode(false)}
-                            className="bg-gray-300 text-gray-700 py-2 px-4 rounded flex items-center gap-2"
+                            className="flex-1 bg-gray-200 text-gray-700 py-2 px-4 rounded-lg font-semibold shadow hover:bg-gray-300 transition flex items-center justify-center gap-2"
                         >
                             <XCircle size={20} /> Cancelar
                         </button>
                     </div>
                 </form>
             ) : (
-                <div className="space-y-2 text-gray-600">
-                    <p><strong>Tipo de sangre:</strong> {bloodType || 'N/A'}</p>
-                    <p><strong>Condiciones médicas:</strong> {medicalConditions || 'N/A'}</p>
-                    <p><strong>Alergias:</strong> {allergies || 'N/A'}</p>
-                    <p><strong>Medicamentos:</strong> {medications || 'N/A'}</p>
+                <div className="space-y-3 text-gray-700">
+                    <p>
+                        <span className="font-semibold">🩸 Tipo de sangre:</span>{' '}
+                        {bloodType || <span className="italic text-gray-400">No especificado</span>}
+                    </p>
+                    <p>
+                        <span className="font-semibold">⚕️ Condiciones médicas:</span>{' '}
+                        {medicalConditions || <span className="italic text-gray-400">No especificado</span>}
+                    </p>
+                    <p>
+                        <span className="font-semibold">🌿 Alergias:</span>{' '}
+                        {allergies || <span className="italic text-gray-400">No especificado</span>}
+                    </p>
+                    <p>
+                        <span className="font-semibold">💊 Medicamentos:</span>{' '}
+                        {medications || <span className="italic text-gray-400">No especificado</span>}
+                    </p>
+    
                     <button
                         onClick={() => setEditMode(true)}
-                        className="mt-4 bg-pink-500 text-white py-2 px-4 rounded flex items-center gap-2"
+                        className="mt-6 w-full bg-gradient-to-r from-pink-500 to-pink-400 text-white py-2 px-4 rounded-lg font-semibold shadow hover:from-pink-600 hover:to-pink-500 transition flex items-center justify-center gap-2"
                     >
                         <Edit2 size={20} /> Editar
                     </button>

@@ -62,7 +62,7 @@ const UserProfile = () => {
       
       await fetchProfile(); // Refresh the profile data after update
       setEditMode(false);
-      alert('El perfil se actualizó correctamente');
+      toast('El perfil se actualizó correctamente');
       router.push('/user-dashboard');
     } catch (error) {
       console.error('Error updating profile:', error);
