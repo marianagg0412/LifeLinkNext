@@ -24,17 +24,20 @@ const UserProfileCard = ({ user, onUpdate, onCancel, onEdit, editMode, onNavigat
 
 
     const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        onUpdate({
-            name: updatedName,
-            lastname: updatedLastName,
-            email: updatedEmail,
-            phone: updatedPhone,
-            password: updatedPassword,
-            donor: isDonor,
-            recipient: isRecipient
-        });
-    };
+      e.preventDefault();
+      const updateObj: Partial<User> = {
+          name: updatedName,
+          lastname: updatedLastName,
+          email: updatedEmail,
+          phone: updatedPhone,
+          donor: isDonor,
+          recipient: isRecipient
+      };
+      if (updatedPassword && updatedPassword.trim() !== "") {
+          updateObj.password = updatedPassword;
+      }
+      onUpdate(updateObj);
+  };
 
     return (
         <div className="max-w-lg w-full bg-white/90 shadow-2xl rounded-3xl p-10 border border-pink-100 relative animate-fade-in">
