@@ -6,4 +6,8 @@ export interface User {
     phone: string;
     donor: boolean;
     recipient: boolean;
+    bloodType: string;
+    medicalConditions: string;
+    allergies: string;
+    medications: string;
   }
