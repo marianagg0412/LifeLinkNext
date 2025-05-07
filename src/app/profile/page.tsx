@@ -9,6 +9,7 @@ import '../styles/ProfileForm.css';
 import Header from '../components/atomic-design/organisms/Header';
 import { User } from '@/interfaces/user';
 import { User as UserIcon, Mail, Phone, Edit2, CheckCircle, XCircle, UserCheck, UserPlus } from 'lucide-react';
+import { toast } from 'sonner';
 
 const UserProfile = () => {
   const router = useRouter();
@@ -41,7 +42,7 @@ const UserProfile = () => {
         setLoading(false);
       } catch (error) {
         console.error('Error fetching profile data:', error);
-        alert('Error fetching profile data');
+        toast('Error en la adquisición de datos del perfil');
         router.push('/login');
       }
     };
@@ -69,11 +70,11 @@ const UserProfile = () => {
       const response = await axios.patch('http://localhost:3000/auth/edit-profile', updatedFields, config);
       setUser(response.data.user);
       setEditMode(false);
-      alert('El perfil se actualizó correctamente');
+      toast('El perfil se actualizó correctamente');
       router.push('/user-dashboard');
     } catch (error) {
       console.error('Error updating profile:', error);
-      alert(error);
+      toast("Error al actualizar el perfil");
     }
   };
 

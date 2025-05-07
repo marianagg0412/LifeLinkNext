@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { PhoneInput } from "react-international-phone";
 import 'react-international-phone/style.css';
+import { toast } from "sonner";
 
 const Register2 = () => {
   const router = useRouter();
@@ -36,7 +37,7 @@ const Register2 = () => {
     if (/^[0-9]*$/.test(value)) {
       setDocnum(value);
     } else {
-      alert("Por favor, ingrese solo números para CC o CE.");
+      toast("Por favor, ingrese solo números para CC o CE.");
       // Optionally, reset the input to the last valid value
       setDocnum(docnum); // Assuming docnum is the state holding the current input value
     }
@@ -55,7 +56,7 @@ const Register2 = () => {
   }) => {
     //event.preventDefault(); // Prevent form submission
     if (!termsAccepted) {
-      alert(
+      toast(
         "Por favor, acepta los términos y condiciones antes de registrarte."
       );
       return;
@@ -75,14 +76,14 @@ const Register2 = () => {
         "http://localhost:3000/auth/register",
         userData
       );
-      alert("El usuario se creó exitosamente");
+      toast("El usuario se creó exitosamente");
       localStorage.setItem("token", response.data.token);
       router.push("/user-dashboard");
     } catch (error: any) {
       if (error.response && error.response.status === 400) {
-        alert(error.response.data.message);
+        toast(error.response.data.message);
       } else {
-        alert("Se produjo un error inesperado al registrar el usuario");
+        toast("Se produjo un error inesperado al registrar el usuario");
       }
     }
   };
@@ -184,7 +185,7 @@ const Register2 = () => {
                         onChange={(e) => {
                           setdocnum_type(e.target.value);
                           if (!allowedOptions.includes(e.target.value)) {
-                            alert("Por favor, seleccione una opción válida.");
+                            toast("Por favor, seleccione una opción válida.");
                           }
                         }}
                         className={(

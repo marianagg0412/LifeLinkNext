@@ -5,6 +5,7 @@ import Button from '@/app/components/homepage/button';
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { User } from 'lucide-react';
+import { toast } from 'sonner';
 
 type Link = {
   label: string;
@@ -37,15 +38,15 @@ const Navigation = () => {
           router.push('/catalogo');
         } else {
           router.push('/login');
-          alert('Por favor inicie sesión para ver el catálogo');
+          toast('Por favor inicie sesión para ver el catálogo');
         }
       } catch (error) {
         console.error(error);
-        alert('Por favor inicie sesión para ver el catálogo');
+        toast('Por favor inicie sesión para ver el catálogo');
       }
     } else {
       router.push('/login');
-      alert('Por favor inicie sesión para ver el catálogo');
+      toast('Por favor inicie sesión para ver el catálogo');
     }
   };
 

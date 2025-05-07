@@ -4,16 +4,17 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import MyButton from "@/app/components/RefreshButton";
+import { toast } from 'sonner';
 
 const handleLogin = async (userData: { email: string; password: string; }, router: ReturnType<typeof useRouter>) => {
     try {
         const response = await axios.post('http://localhost:3000/auth/login', userData);
         localStorage.setItem('token', response.data.token);
         router.push('/user-dashboard');
-        alert('Se ha iniciado sesión correctamente');
+        toast('Se ha iniciado sesión correctamente');
     } catch (error) {
         console.error('Login error:', error);
-        alert('La información de inicio de sesión que ingresaste está incorrecta');
+        toast('La información de inicio de sesión que ingresaste está incorrecta');
     }
 };
 
