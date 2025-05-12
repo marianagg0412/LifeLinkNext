@@ -40,7 +40,7 @@ const UserProfileCard = ({ user, onUpdate, onCancel, onEdit, editMode, onNavigat
   };
 
     return (
-        <div className="max-w-lg w-full bg-white/90 shadow-2xl rounded-3xl p-10 border border-pink-100 relative animate-fade-in">
+        <div className="max-w-lg w-full bg-white/90 shadow-2xl rounded-3xl p-10 border border-pink-100 relative animate-fade-in transition-transform hover:scale-105">
           <div className="flex flex-col items-center mb-8">
             <div className="bg-gradient-to-tr from-[#FF5A5A] to-pink-400 rounded-full p-2 shadow-lg mb-2">
               <UserIcon className="text-white" size={56} />

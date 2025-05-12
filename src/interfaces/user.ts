@@ -1,4 +1,5 @@
 export interface User {
+    id: string;
     name: string;
     lastname: string;
     password: string
@@ -7,7 +8,4 @@ export interface User {
     donor: boolean;
     recipient: boolean;
     bloodType: string;
-    medicalConditions: string;
-    allergies: string;
-    medications: string;
-  }
+}
